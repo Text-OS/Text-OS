@@ -71,6 +71,7 @@ cd Calculator
 set TextOS.FileToExecute=Calculator.bat
 if not exist !TextOS.FileToExecute! goto NotFound
 call !TextOS.FileToExecute!
+title !TextOS.Standardtitle!
 cd.. && cd..
 goto menu
 
@@ -191,7 +192,7 @@ set/p TextOS.VDiskModeInput=!TextOS.MountedDrive!:\
 if !TextOS.VDiskModeInput! == back cd.. && cd.. && goto menu
 if !TextOS.VDiskModeInput! == dir dir
 if !TextOS.VDiskModeInput! == read goto VDisk_Read
-if exist !TextOS.VDiskModeInput! start "!TextOS.VDiskModeInput!"
+if exist !TextOS.VDiskModeInput! "!TextOS.VDiskModeInput!"
 goto VDiskMode
 
 :VDisk_Read
