@@ -1,0 +1,33 @@
+v0.1.062
+- Removing the command "wget"
+- Fixing the command "help"
+- Underhood fixes
+- Updating Text-OS BIOS to 0.1.015
+
+v0.1.059
+- Adding "Guess the number". this was the secret game I talked about.
+- Fixing vdisk
+- Removed !Twoup! Because of bugs. Replaced all !Twoup! to "cd.. && cd..".
+- Cleanup
+- Added !CLR! API string
+
+v0.1.056
+- !Oneup! and !Twoup! API strings avalible
+- Rewriting code thanks to these strings (Partially done)
+- First version to document code lines FOR REAL
+- Deleting Pic Editor. The code did not even work 
+- Making a secret game that will come in v0.1.058
+- Removing Movies. They took up space and wasn't even implemented.
+- Bug fixes
+
+v0.1.046
+- "Cleanup"
+- Fixing cls not being listed
+- Removing Echo on/Echo_on
+
+v0.1.041
+- Fixing BIOS ID bug
+
+v0.1.040
+- First documented release. 
+- Now its harder to create lots of code :/

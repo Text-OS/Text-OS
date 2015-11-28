@@ -1,0 +1,9 @@
+API strings:
+!Selection! - Shortcut for cmdmenusel. Example: !selection! "Start" "Exit"
+!Timeout! - Makes a timeout. Example: !Timeout! 3 >nul
+!Oneup! - Goes up one directory. Example: !Oneup!
+!CLR! - Shortcut for Color. Example: !CLR! 4e
+
+API Variables:
+!TextOS.Version! - Text-OS version.
+!TextOS.BootedFromTextOS! - Gives 1 if booted from Text-OS. Great to see if you booted from Text-OS.
