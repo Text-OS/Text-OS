@@ -8,7 +8,6 @@
   !define PRODUCT_VERSION "1.0.0.0"
   !define PRODUCT_WEB_SITE "http://rasmusolle.tk"
   !define PRODUCT_UNINST_ROOT_KEY "HKLM"
-  !define PRODUCT_ID "{ea92ef52-afe4-4212-bacb-dfe9fca94cd6}"
 
 ;--------------------------------
 ;Include Modern UI
@@ -39,7 +38,7 @@
 ;Pages
 
   !insertmacro MUI_PAGE_WELCOME
-  !insertmacro MUI_PAGE_LICENSE "´LICENSE.txt"
+  !insertmacro MUI_PAGE_LICENSE "Â´LICENSE.txt"
   !insertmacro MUI_PAGE_COMPONENTS
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
