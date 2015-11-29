@@ -1,4 +1,4 @@
-;This is the installer for Text-OS, made with NSIS (MUI).
+﻿;This is the installer for Text-OS, made with NSIS (MUI).
 ;The example script that this is based on this is written by Joost Verburg
 
 ;--------------------------------
@@ -127,11 +127,10 @@ Section "Core" SecCore
 
 SectionEnd
 
-Section "Lines Of Code" SecLOC
+Section "Extra stuff" SecXtra
   
-  SetOutPath "$INSTDIR"
-  File "LinesOfCode.odp"
-  CreateShortCut "$SMPROGRAMS\Text-OS\Lines of code (.ODP file).lnk" "$INSTDIR\LinesOfCode.odp"
+  SetOutPath "$INSTDIR\Data\Downloads\"
+  File "Data\Downloads\Fun.txt
   
 SectionEnd
   
@@ -140,12 +139,12 @@ SectionEnd
 
 
   LangString DESC_SecCore ${LANG_ENGLISH} "Core files (Required)"
-  LangString DESC_SecLOC ${LANG_ENGLISH} "Showcase of the lines of code from every version (Requires a program to read .odp files)"
+  LangString DESC_SecXtra ${LANG_ENGLISH} "Extra stuff"
   
   ;Assign language strings to sections
   !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
     !insertmacro MUI_DESCRIPTION_TEXT ${SecCore} $(DESC_SecCore)
-	!insertmacro MUI_DESCRIPTION_TEXT ${SecLOC} $(DESC_SecLOC)
+	!insertmacro MUI_DESCRIPTION_TEXT ${SecXtra} $(DESC_SecXtra)
 	
   !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
