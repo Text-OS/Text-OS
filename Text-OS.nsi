@@ -1,4 +1,4 @@
-﻿;This is the installer for Text-OS, made with NSIS (MUI).
+;This is the installer for Text-OS, made with NSIS (MUI).
 ;The example script that this is based on this is written by Joost Verburg
 
 ;--------------------------------
@@ -38,7 +38,7 @@
 ;Pages
 
   !insertmacro MUI_PAGE_WELCOME
-  !insertmacro MUI_PAGE_LICENSE "´LICENSE.txt"
+  !insertmacro MUI_PAGE_LICENSE "LICENSE.txt"
   !insertmacro MUI_PAGE_COMPONENTS
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
@@ -130,7 +130,7 @@ SectionEnd
 Section "Extra stuff" SecXtra
   
   SetOutPath "$INSTDIR\Data\Downloads\"
-  File "Data\Downloads\Fun.txt
+  File "Data\Downloads\Fun.txt"
   
 SectionEnd
   
