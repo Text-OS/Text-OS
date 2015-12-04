@@ -3,7 +3,10 @@ API strings:
 !Timeout! - Makes a timeout. Example: !Timeout! 3 >nul
 !Oneup! - Goes up one directory. Example: !Oneup!
 !CLR! - Shortcut for Color. Example: !CLR! 4e
+!BIOSSETUP! - (NOTE: RESERVED FOR BIOS SETUP! TEXT-OS WILL CRASH IF YOU USE IT) Setups the BIOS for Text-OS
 
 API Variables:
 !TextOS.Version! - Text-OS version.
+!TextOS.DevMode! - Shows if Developer mode is enabled. Great for debugs.
 !TextOS.BootedFromTextOS! - Gives 1 if booted from Text-OS. Great to see if you booted from Text-OS.
+!TextOS.RandomNumber! - Gives a random number that resets the next time you shut down Text-OS.

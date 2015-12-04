@@ -4,45 +4,43 @@ setlocal enabledelayedexpansion
 
 if not defined TextOS.BootedFromTextOS exit
 
-set GuessTheNumber.Version=0.7
-set GuessTheNumber.Debug=0
-
-if exist set_debug set GuessTheNumber.Debug=1
+set GTN.Version=0.8
 
 :menu
 cls
 echo Guess The Number^^!
 echo.
-::!Selection! "Start" "Exit to TextOS"
-cmdmenusel f870 "Start" "Exit to TextOS"
+!Selection! "Start" "Exit to TextOS"
+::cmdmenusel f870 "Start" "Exit to TextOS"
 
 if %errorlevel% == 1 goto Intro
 if %errorlevel% == 2 exit /b
+goto menu
 
 :Intro
-set GuessTheNumber.Number=%random%
-set GuessTheNumber.AImsg=Hello^^! Now, try to guess the number I'm thinking of. 
-:: DEBUG: !GuessTheNumber.Number!
+set GTN.Number=%random%
+set GTN.AImsg=Hello^^! Now, try to guess the number I'm thinking of. 
+:: DEBUG: !GTN.Number!
 :TheGame
 cls
-set /a GuessTheNumber.Tries+=1
-echo !GuessTheNumber.AImsg!
+set /a GTN.Tries+=1
+echo !GTN.AImsg!
 echo.
-set/p GuessTheNumber.Input=Guess The Number: 
+set/p GTN.Input=Guess The Number: 
 
-if !GuessTheNumber.Input! LSS !GuessTheNumber.Number! set GuessTheNumber.AImsg=Higher^^! && goto TheGame
-if !GuessTheNumber.Input! EQU !GuessTheNumber.Number! goto YouWon
-if !GuessTheNumber.Input! GTR !GuessTheNumber.Number! set GuessTheNumber.AImsg=Less^^! && goto TheGame
+if !GTN.Input! LSS !GTN.Number! set GTN.AImsg=Higher^^! && goto TheGame
+if !GTN.Input! EQU !GTN.Number! goto YouWon
+if !GTN.Input! GTR !GTN.Number! set GTN.AImsg=Less^^! && goto TheGame
 
 :YouWon
 cls
 echo You won^^!
-echo You had !GuessTheNumber.Tries! until you found the correct one^^!
-echo And the number was !GuessTheNumber.Number!.
+echo You had !GTN.Tries! until you found the correct one^^!
+echo And the number was !GTN.Number!.
 pause >nul
 goto menu
 
-
+:: Things I wrote when we talked about defenitions on cameras.
 :: 2160p == 4K
 :: 1440p == HD
 :: 1080p == HD

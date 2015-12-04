@@ -1,8 +1,11 @@
 v0.1.062
-- Removing the command "wget"
-- Fixing the command "help"
-- Underhood fixes
+- Refined Error system
+- Added more API Documentation for future Dev APIs
+- Cleanup of "Guess The Number"
 - Updating Text-OS BIOS to 0.1.015
+- Made the !BIOSSETUP! command unavalible after setup
+- Laid the load-code for Zombo Com, although the program doesn't work.
+- More under the hood fixes
 
 v0.1.059
 - Adding "Guess the number". this was the secret game I talked about.

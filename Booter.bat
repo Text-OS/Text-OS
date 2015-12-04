@@ -20,6 +20,8 @@ set Oneup=cd..
 !BIOSSETUP! BIOS_version=0.1.015
 !BIOSSETUP! BIOS_ram=5M
 
+set BIOSSETUP=exit
+
 :menu
 cls
 echo                       ============================

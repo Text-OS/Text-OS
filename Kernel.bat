@@ -8,6 +8,7 @@ set TextOS.Version=0.1.059
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
 set TextOS.BootedFromTextOS=1
 set TextOS.RandomNumber=%random%
+set TextOS.DevMode=0
 set TextOS.UseBooterMsg=Make sure you boot from the booter.
 set TextOS.MM=Error loading TextOS.BootedFromTextOS. Having this not set may crash Text-OS programs.
 set TextOS.SkipLoad=true
@@ -18,10 +19,29 @@ set TextOS.HomeFolder=%cd%\data\homefolder
 cd Data
 
 :: Errors
-if not defined BIOS_ram echo Error loading RAM. !UseBooterMsg! && pause >nul && exit
-if not defined BIOS_version echo Error loading BIOS version. !UseBooterMsg! && pause >nul && exit
-if not defined TextOS.BootedFromTextOS echo !TextOS.MM! && pause >nul && exit
+if not defined BIOS_ram (
+						echo Error loading RAM. !TextOS.UseBooterMsg!
+						echo For Booter developers, make sure your booter meets the requirements.
+						pause >nul
+						exit
+						)
+
+if not defined BIOS_version (
+						echo Error loading BIOS version. !TextOS.UseBooterMsg!
+						echo For Booter developers, make sure your booter meets the requirements.
+						pause >nul
+						exit
+						)
+
+if !BIOSSETUP! NEQ exit (
+						echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
+						echo For Booter developers, make sure your booter meets the requirements.
+						pause >nul
+						exit
+						)
+
 if not exist cmdmenusel.exe echo Error loading cmdmenusel.exe. && pause >nul && exit
+if not defined TextOS.BootedFromTextOS echo !TextOS.MM! && pause >nul && exit
 
 title !TextOS.StandardTitle!
 if !TextOS.SkipLoad! == true goto menu
@@ -56,7 +76,7 @@ goto menu
 cls
 echo ===============PROGRAMS==============
 echo.
-!Selection! "Calculator" "Back To Menu"
+!Selection! "Calculator" "Zombo.com Text Edition (COMING SOON)" "Back To Menu"
 
 if %errorlevel% == 1 goto Calc
 if %errorlevel% == 2 goto menu
@@ -69,6 +89,20 @@ cls
 cd Programs
 cd Calculator
 set TextOS.FileToExecute=Calculator.bat
+if not exist !TextOS.FileToExecute! goto NotFound
+call !TextOS.FileToExecute!
+title !TextOS.Standardtitle!
+cd.. && cd..
+goto menu
+
+:: Zombocom Text Edition! The folders and code here is working, but no real file is existing.
+:ZomboCom
+cls
+
+goto Programs
+cd Programs
+cd Zombocom_Text_Edition
+set TextOS.FileToExecute=Start.bat
 if not exist !TextOS.FileToExecute! goto NotFound
 call !TextOS.FileToExecute!
 title !TextOS.Standardtitle!
@@ -105,16 +139,9 @@ goto menu
 
 :: Generic errors for games and programs
 
-:VarError
-cls
-echo Could not read the variable TextOS.FileToExecute. Setting TextOS.FileToExecute variable.
-set TextOS.FileToExecute=1
-pause >nul
-goto menu
-
 :NotFound
 cls
-echo File !file! not found.
+echo File not found.
 pause >nul
 goto menu
 
