@@ -20,25 +20,31 @@ cd Data
 
 :: Errors
 if not defined BIOS_ram (
-						echo Error loading RAM. !TextOS.UseBooterMsg!
-						echo For Booter developers, make sure your booter meets the requirements.
-						pause >nul
-						exit
-						)
+					echo Error loading RAM. !TextOS.UseBooterMsg!
+					echo For Booter developers, make sure your booter meets the requirements.
+					pause >nul
+					exit
+					)
 
 if not defined BIOS_version (
-						echo Error loading BIOS version. !TextOS.UseBooterMsg!
-						echo For Booter developers, make sure your booter meets the requirements.
-						pause >nul
-						exit
-						)
+					echo Error loading BIOS version. !TextOS.UseBooterMsg!
+					echo For Booter developers, make sure your booter meets the requirements.
+					pause >nul
+					exit
+					)
 
 if !BIOSSETUP! NEQ exit (
-						echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
-						echo For Booter developers, make sure your booter meets the requirements.
-						pause >nul
-						exit
-						)
+					echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
+					echo For Booter developers, make sure your booter meets the requirements.
+					pause >nul
+					exit
+					)
+					
+if not defined Selection set TextOS.VarNotFound=^^!Selection^^!
+if not defined Timeout set TextOS.VarNotFound=^^!Timeout^^!
+if not defined Oneup set TextOS.VarNotFound=^^!Oneup^^!
+if not defined CLR set TextOS.VarNotFound=^^!CLR^^!
+
 
 if not exist cmdmenusel.exe echo Error loading cmdmenusel.exe. && pause >nul && exit
 if not defined TextOS.BootedFromTextOS echo !TextOS.MM! && pause >nul && exit
@@ -61,13 +67,14 @@ echo.
 echo Hello !username!. Welcome to the Text-OS menu.
 echo You are running Text-OS !TextOS.Version!
 echo.
-!Selection! "Command Prompt" "Programs" "Games" "Home Directory" "Exit"
+!Selection! "Command Prompt" "Programs" "Games" "Home Directory" "Open the Text-OS website" "Exit"
 
 if %errorlevel% == 1 goto precmd
 if %errorlevel% == 2 goto Programs
 if %errorlevel% == 3 goto Games
 if %errorlevel% == 4 goto HomeDirectory
-if %errorlevel% == 5 goto cmd
+if %errorlevel% == 5 goto Website
+if %errorlevel% == 6 goto cmd
 goto menu
 
 :: ====================Programs====================
@@ -79,7 +86,9 @@ echo.
 !Selection! "Calculator" "Zombo.com Text Edition (COMING SOON)" "Back To Menu"
 
 if %errorlevel% == 1 goto Calc
-if %errorlevel% == 2 goto menu
+if %errorlevel% == 2 goto ZomboCom
+if %errorlevel% == 3 goto menu
+goto WrongErrorlevel
 goto Programs
 
 :: jöke
@@ -116,12 +125,13 @@ goto menu
 
 :Games
 cls
-echo ===============GAMES=(WIP)==============
+echo ===============GAMES===============
 echo.
 !Selection! "Guess The Number" "Back To Menu"
 
 if %errorlevel% == 1 goto GuessTheNumber
 if %errorlevel% == 2 goto menu
+goto WrongErrorlevel
 goto menu
 
 :GuessTheNumber
@@ -142,6 +152,12 @@ goto menu
 :NotFound
 cls
 echo File not found.
+pause >nul
+goto menu
+
+:WrongErrorLevel
+cls
+echo Invalid selection.
 pause >nul
 goto menu
 
@@ -242,7 +258,6 @@ cls
 echo This is coming soon.
 pause >nul
 goto menu
-
 
 :DevPromptStart
 cls

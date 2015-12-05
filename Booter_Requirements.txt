@@ -1,0 +1,15 @@
+This is a list of what your booter needs to have:
+
+API strings:
+  - !BIOSSETUP!
+  - !Selection!
+  - !Timeout!
+  - !Oneup!
+  - !CLR!
+
+BIOS variables:
+  - !BIOS_version!
+  - !BIOS_ram!
+
+- A way to load and boot the kernel
+- sets BIOSSETUP to exit
