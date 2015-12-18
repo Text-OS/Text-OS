@@ -19,7 +19,7 @@ v0.1.056
 - Rewriting code thanks to these strings (Partially done)
 - First version to document code lines FOR REAL
 - Deleting Pic Editor. The code did not even work 
-- Making a secret game that will come in v0.1.058
+- Making a secret game that will come in v0.1.059
 - Removing Movies. They took up space and wasn't even implemented.
 - Bug fixes
 
