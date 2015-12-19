@@ -2,6 +2,12 @@
 title Text OS
 setlocal enabledelayedexpansion
 
+echo ^^!--DEBUG--^^!
+echo.
+echo Do you want to do a FinalDebug Test?
+!Selection! "Yes" "No"
+if %errorlevel% == 1 set TextOS_SDK.FinalDebug=TESTY
+
 
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
 set TextOS.Version=0.1.059
@@ -16,7 +22,7 @@ set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
 set TextOS.RestartButSkipVariablesCmd=goto RBSVC
 set TextOS.HomeFolder=%cd%\data\homefolder
-set TextOS_SDK.FinalDebug=TESTY
+::set TextOS_SDK.FinalDebug=TESTY
 cd Data
 
 :: SDK stuff
