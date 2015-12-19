@@ -16,29 +16,36 @@ set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
 set TextOS.RestartButSkipVariablesCmd=goto RBSVC
 set TextOS.HomeFolder=%cd%\data\homefolder
+set TextOS_SDK.FinalDebug=TESTY
 cd Data
+
+:: SDK stuff
+if defined TextOS_SDK.FinalDebug (
+				set TextOS.FinalDebugMode=1
+				goto AppDebugger_Load
+				) 
 
 :: Errors
 if not defined BIOS_ram (
-					echo Error loading RAM. !TextOS.UseBooterMsg!
-					echo For Booter developers, make sure your booter meets the requirements.
-					pause >nul
-					exit
-					)
+				echo Error loading RAM. !TextOS.UseBooterMsg!
+				echo For Booter developers, make sure your booter meets the requirements.
+				pause >nul
+				exit
+				)
 
 if not defined BIOS_version (
-					echo Error loading BIOS version. !TextOS.UseBooterMsg!
-					echo For Booter developers, make sure your booter meets the requirements.
-					pause >nul
-					exit
-					)
+				echo Error loading BIOS version. !TextOS.UseBooterMsg!
+				echo For Booter developers, make sure your booter meets the requirements.
+				pause >nul
+				exit
+				)
 
 if !BIOSSETUP! NEQ exit (
-					echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
-					echo For Booter developers, make sure your booter meets the requirements.
-					pause >nul
-					exit
-					)
+				echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
+				echo For Booter developers, make sure your booter meets the requirements.
+				pause >nul
+				exit
+				)
 					
 if not defined Selection set TextOS.VarNotFound=^^!Selection^^!
 if not defined Timeout set TextOS.VarNotFound=^^!Timeout^^!
@@ -88,7 +95,7 @@ echo.
 if %errorlevel% == 1 goto Calc
 if %errorlevel% == 2 goto ZomboCom
 if %errorlevel% == 3 goto menu
-goto WrongErrorlevel
+call :WrongErrorlevel
 goto Programs
 
 :: jöke
@@ -131,8 +138,8 @@ echo.
 
 if %errorlevel% == 1 goto GuessTheNumber
 if %errorlevel% == 2 goto menu
-goto WrongErrorlevel
-goto menu
+call :WrongErrorlevel
+goto Games
 
 :GuessTheNumber
 cls
@@ -159,7 +166,7 @@ goto menu
 cls
 echo Invalid selection.
 pause >nul
-goto menu
+exit /b
 
 :: ====================Text=OS=Command=Prompt====================
 
@@ -259,12 +266,25 @@ echo This is coming soon.
 pause >nul
 goto menu
 
+:AppDebugger_Load
+cls
+:loop
+set /a count+=1
+echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
+if !count! GTR 50000 goto AppDebugger_Start
+goto loop
+:AppDebugger_Start
+cls
+set/p TextOS.AppDebugger_Input=Enter File to debug (WITHOUT FILE EXTENSION): 
+call !TextOS.AppDebugger_Input!.bat
+exit
+
 :DevPromptStart
 cls
 echo Type info for info
 :DevPrompt
 set/p c=%cd%^>
-if !TextOS.LatestDevPromptInput! == info goto DevInfo
+if !c! == info goto DevInfo
 %c%
 goto DevPrompt
 
