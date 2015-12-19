@@ -1,6 +1,7 @@
 @echo off
 title Text OS
 setlocal enabledelayedexpansion
+cd Data
 
 echo ^^!--DEBUG--^^!
 echo.
@@ -23,7 +24,7 @@ set TextOS.DoEchoOn=false
 set TextOS.RestartButSkipVariablesCmd=goto RBSVC
 set TextOS.HomeFolder=%cd%\data\homefolder
 ::set TextOS_SDK.FinalDebug=TESTY
-cd Data
+
 
 :: SDK stuff
 if defined TextOS_SDK.FinalDebug (
