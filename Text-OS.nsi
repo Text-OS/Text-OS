@@ -5,8 +5,8 @@
 ;Define
 
   !define PRODUCT_NAME "Text-OS"
-  !define PRODUCT_VERSION "1.0.0.0"
-  !define PRODUCT_WEB_SITE "http://rasmusolle.tk"
+  !define PRODUCT_VERSION "0.1.062"
+  !define PRODUCT_WEB_SITE "http://text-os.github.io"
   !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
 ;--------------------------------
@@ -157,7 +157,6 @@ Section "Uninstall"
   Delete "$INSTDIR\Booter.bat"
   Delete "$INSTDIR\Kernel.bat"
   Delete "$INSTDIR\Changelog.txt"
-  Delete "$INSTDIR\LinesOfCode.odp"
   
   RMDir /r "$SMPROGRAMS\Text-OS\"
 

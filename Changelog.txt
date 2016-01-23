@@ -1,5 +1,7 @@
 v0.1.062
 - Refined Error system
+- More error messages
+- Added "Open the Text-OS website"
 - Added more API Documentation for future Dev APIs
 - Cleanup of "Guess The Number"
 - Updating Text-OS BIOS to 0.1.015

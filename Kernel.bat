@@ -74,7 +74,7 @@ echo Loading...
 :RBSVC
 
 :menu
-:: the variable !username! uses your account name, for example, for me the variable is Rasmusolle because my win acc name is Rasmusolle.
+:: the variable !username! uses your account name, for example, for me the variable is Rasmusolle because my windows acc name is Rasmusolle.
 cls
 echo ===============TEXT=OS=MENU==============
 echo.
@@ -194,6 +194,9 @@ if !TextOS.CmdPromptInput! == dir dir
 if !TextOS.CmdPromptInput! == dir/w dir/w
 if !TextOS.CmdPromptInput! == cls cls
 if !TextOS.CmdPromptInput! == secret goto DevPromptStart
+if !TextOS.CmdPromptInput! == color goto color
+if !TextOS.CmdPromptInput! == "help color" goto DevPromptStart
+
 if !TextOS.CmdPromptInput! == vdisk goto MountVirtualDisk
 goto cmd
 
@@ -206,6 +209,7 @@ echo echo - echo mode
 echo dir - Shows the current directory
 echo dir/w - Shows a compressed version of the current directory
 echo cls - Clears the screen
+echo color - Changes CMD color. Do help color for colorcodes
 echo vdisk - Virtual Disk
 goto cmd
 
@@ -230,6 +234,39 @@ echo.
 if not exist !TextOS.LoadProgramInput!.bat echo Could not find the file. && !Timeout! 4 >nul && goto loadprogram
 call !TextOS.LoadProgramInput!
 goto menu
+
+:: Copied from Command Prompt Wrapper.
+:color
+echo for help about the color code, do help code
+set/p colorcode=type the color code:
+color !colorcode!
+goto cmd
+:helpcolor
+echo -----COLOR-----
+echo Changes the background and text color
+echo List of colors:
+echo.
+echo 0  Black
+echo 1  Blue
+echo 2  Green
+echo 3  Cyan
+echo 4  Red
+echo 5  Magenta
+echo 6  Yellow
+echo 7  White
+echo 8  Gray/Grey
+echo 9  Light Blue
+echo A  Light Green
+echo B  Light Cyan 
+echo C  Light Red
+echo D  Light Magenta
+echo E  Light yellow
+echo F  Light White (lol how does that look like)
+echo.
+echo The first color is the background, the second is the text.
+echo The default color code is 07.
+echo If no color code is given, it will reset to the standard colors
+goto cmd
 
 :MountVirtualDisk
 cd VirtualDrives
@@ -278,7 +315,7 @@ cls
 :loop
 set /a count+=1
 echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-if !count! GTR 50000 goto AppDebugger_Start
+if !count! GTR 50 goto AppDebugger_Start
 goto loop
 :AppDebugger_Start
 cls
