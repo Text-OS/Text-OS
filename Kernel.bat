@@ -98,8 +98,6 @@ if %errorlevel% == 3 goto menu
 call :WrongErrorlevel
 goto Programs
 
-:: jöke
-
 :Calc
 cls
 cd Programs

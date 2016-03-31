@@ -1,6 +1,8 @@
 ;This is the installer for Text-OS, made with NSIS (MUI).
 ;The example script that this is based on this is written by Joost Verburg
 
+;NOTE - WE MIGHT NOT USE THIS OR MAKE AN INSTALLER IN BATCH
+
 ;--------------------------------
 ;Define
 
