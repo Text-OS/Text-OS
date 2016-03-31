@@ -3,11 +3,13 @@
 title Text OS Booter
 setlocal enabledelayedexpansion
 
+echo If you can read this then you use a very slow computer :)
+ping localhost -n 0.0001 >nul
+
+cls
 echo Text OS booter loading...
 ping localhost -n 2 >nul
 cd Data
-
-set TextOS_Booter.APIstrings=4
 
 ::Setting up custom commands
 set Selection=cmdmenusel f870

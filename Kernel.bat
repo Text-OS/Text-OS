@@ -52,6 +52,12 @@ if not defined Timeout set TextOS.VarNotFound=^^!Timeout^^!
 if not defined Oneup set TextOS.VarNotFound=^^!Oneup^^!
 if not defined CLR set TextOS.VarNotFound=^^!CLR^^!
 
+if defined TextOS.VarNotFound (
+				echo The variable !TextOS.VarNotFound! is not defined. !UseBooterMsg!
+				echo For Booter developers, make sure your booter meets the requirements.
+				pause >nul
+				exit
+				)
 
 if not exist cmdmenusel.exe echo Error loading cmdmenusel.exe. && pause >nul && exit
 if not defined TextOS.BootedFromTextOS echo !TextOS.MM! && pause >nul && exit
