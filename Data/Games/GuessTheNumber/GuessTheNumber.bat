@@ -1,3 +1,7 @@
+::=======================
+:: Guess The Number 0.8
+::    By RasmusOlle
+::=======================
 @echo off
 title Guess The Number
 setlocal enabledelayedexpansion

@@ -3,13 +3,6 @@ title Text OS
 setlocal enabledelayedexpansion
 cd Data
 
-echo ^^!--DEBUG--^^!
-echo.
-echo Do you want to do a FinalDebug Test?
-!Selection! "Yes" "No"
-if %errorlevel% == 1 set TextOS_SDK.FinalDebug=TESTY
-
-
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
 set TextOS.Version=0.1.059
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
@@ -97,10 +90,10 @@ goto menu
 cls
 echo ===============PROGRAMS==============
 echo.
-!Selection! "Calculator" "Zombo.com Text Edition (COMING SOON)" "Back To Menu"
+!Selection! "Calculator" "Text-OS Browser" "Back To Menu"
 
 if %errorlevel% == 1 goto Calc
-if %errorlevel% == 2 goto ZomboCom
+if %errorlevel% == 2 goto Browser
 if %errorlevel% == 3 goto menu
 call :WrongErrorlevel
 goto Programs
@@ -112,6 +105,17 @@ cls
 cd Programs
 cd Calculator
 set TextOS.FileToExecute=Calculator.bat
+if not exist !TextOS.FileToExecute! goto NotFound
+call !TextOS.FileToExecute!
+title !TextOS.Standardtitle!
+cd.. && cd..
+goto menu
+
+:Browser
+cls
+cd Programs
+cd Browser
+set TextOS.FileToExecute=Browser_Start.bat
 if not exist !TextOS.FileToExecute! goto NotFound
 call !TextOS.FileToExecute!
 title !TextOS.Standardtitle!
@@ -173,7 +177,7 @@ goto menu
 cls
 echo Invalid selection.
 pause >nul
-exit /b
+goto menu
 
 :: ====================Text=OS=Command=Prompt====================
 
@@ -226,6 +230,7 @@ echo You are in echo mode.
 set/p ECHO_INPUT=Enter: 
 goto cmd
 
+:: This might be changed/deleted in the future
 :loadprogram
 echo.
 echo You are in LoadProgram mode.

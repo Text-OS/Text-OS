@@ -10,16 +10,15 @@ cd Data
 set TextOS_Booter.APIstrings=4
 
 ::Setting up custom commands
-set BIOSSETUP=set
 set Selection=cmdmenusel f870
 set Timeout=ping localhost -n
 set CLR=color
 set Oneup=cd..
 
 ::Setting up BIOS
+set BIOSSETUP=set
 !BIOSSETUP! BIOS_version=0.1.015
 !BIOSSETUP! BIOS_ram=5M
-
 set BIOSSETUP=exit
 
 :menu

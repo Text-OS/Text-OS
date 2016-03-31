@@ -1,3 +1,7 @@
+::=======================
+::   Calculator  1.0
+::    By RasmusOlle
+::=======================
 @echo off
 title Batch Calculator
 setlocal enabledelayedexpansion
@@ -5,7 +9,7 @@ setlocal enabledelayedexpansion
 REM Check if its running from TextOS or not.
 if not defined TextOS.BootedFromTextOS set Selection=cmdmenusel f870
 
-set Calculator_Version=0.5.1
+set Calculator_Version=1.0
 
 :main
 cls

@@ -97,14 +97,25 @@ Section "Core" SecCore
   
   ;Programs folder
   SetOutPath "$INSTDIR\Data\Programs"
+
   SetOutPath "$INSTDIR\Data\Programs\Calculator"
   File "Data\Programs\Calculator\Calculator.bat"
   File "Data\Programs\Calculator\cmdmenusel.exe"
+
+  SetOutPath "$INSTDIR\Data\Programs\Browser"
+  File "Data\Programs\Browser\Browser_Start.bat"
+  File "Data\Programs\Browser\index.html"
+  File "Data\Programs\Browser\lynx.exe"
+  File "Data\Programs\Browser\settings.ini"
+  CreateDirectory "$INSTDIR\Data\Programs\Browser\temp"
+  SetOutPath "$INSTDIR\Data\Programs\Browser\temp"
+  
   
   ;VirtualDrives folder
   SetOutPath "$INSTDIR\Data\VirtualDrives"
   SetOutPath "$INSTDIR\Data\VirtualDrives\A"
   File "Data\VirtualDrives\A\Grocery_List.doc"
+  
   
   ;Start Menu Shortcuts
   CreateDirectory "$SMPROGRAMS\Text-OS\"
