@@ -2,6 +2,8 @@
 title Text-OS Browser Launcher
 setlocal enabledelayedexpansion
 
+if not exist temp mkdir temp 
+
 set term=vt100
 set home=%cd%\
 set temp=%cd%\temp\
