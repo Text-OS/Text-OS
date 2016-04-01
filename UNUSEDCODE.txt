@@ -5,3 +5,8 @@ echo.
 echo Do you want to do a FinalDebug Test?
 !Selection! "Yes" "No"
 if %errorlevel% == 1 set TextOS_SDK.FinalDebug=TESTY
+
+
+:: "Open the Text-OS website"
+
+if %errorlevel% == 5 goto Website

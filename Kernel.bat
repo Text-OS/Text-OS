@@ -4,14 +4,14 @@ setlocal enabledelayedexpansion
 cd Data
 
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
-set TextOS.Version=0.1.059
+set TextOS.Version=0.1.062
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
 set TextOS.BootedFromTextOS=1
 set TextOS.RandomNumber=%random%
 set TextOS.DevMode=0
 set TextOS.UseBooterMsg=Make sure you boot from the booter.
 set TextOS.MM=Error loading TextOS.BootedFromTextOS. Having this not set may crash Text-OS programs.
-set TextOS.SkipLoad=true
+set TextOS.SkipLoad=false
 set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
 set TextOS.RestartButSkipVariablesCmd=goto RBSVC
@@ -80,14 +80,13 @@ echo.
 echo Hello !username!. Welcome to the Text-OS menu.
 echo You are running Text-OS !TextOS.Version!
 echo.
-!Selection! "Command Prompt" "Programs" "Games" "Home Directory" "Open the Text-OS website" "Exit"
+!Selection! "Command Prompt" "Programs" "Games" "Home Directory" "Exit"
 
 if %errorlevel% == 1 goto precmd
 if %errorlevel% == 2 goto Programs
 if %errorlevel% == 3 goto Games
 if %errorlevel% == 4 goto HomeDirectory
-if %errorlevel% == 5 goto Website
-if %errorlevel% == 6 goto cmd
+if %errorlevel% == 5 goto cmd
 goto menu
 
 :: ====================Programs====================
