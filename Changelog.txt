@@ -1,12 +1,18 @@
 v0.1.062
 - Refined Error system
 - More error messages
-- Added "Open the Text-OS website"
+- Added Color & Help Color (Taken from my older project, command prompt wrapper)
 - Added more API Documentation for future Dev APIs
 - Cleanup of "Guess The Number"
 - Updating Text-OS BIOS to 0.1.015
 - Made the !BIOSSETUP! command unavalible after setup
-- Laid the load-code for Zombo Com, although the program doesn't work.
+- Fixed a buggy and early version of the browser
+- Add VDisk commands help and del
+- Fix help code
+- Deleting Disk Formatter, which was stubbed
+- Laid the code for Zombo Com, although the program isn't coded into the program list.
+- Update license
+- Made it compatible with the App SDK (The loader is broken however)
 - More under the hood fixes
 
 v0.1.059

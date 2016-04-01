@@ -1,0 +1,3 @@
+This is a text document you can read in read mode in VDisk mode
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec dui dapibus, faucibus sem ut, ultricies lectus. Nulla ultricies lectus vel risus cursus, sed tempor ligula efficitur. Quisque vestibulum quis enim quis egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi pellentesque mi sit amet felis venenatis, a pharetra arcu lacinia.

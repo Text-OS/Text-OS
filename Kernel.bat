@@ -202,7 +202,7 @@ if !TextOS.CmdPromptInput! == dir/w dir/w
 if !TextOS.CmdPromptInput! == cls cls
 if !TextOS.CmdPromptInput! == secret goto DevPromptStart
 if !TextOS.CmdPromptInput! == color goto color
-if !TextOS.CmdPromptInput! == "help color" goto DevPromptStart
+if !TextOS.CmdPromptInput! == "help color" goto helpcolor
 
 if !TextOS.CmdPromptInput! == vdisk goto MountVirtualDisk
 goto cmd
@@ -289,24 +289,51 @@ cls
 echo You are in VDisk mode.
 echo.
 :VDiskMode
-if !TextOS.VDisk_ReadC! == 1 echo. && set TextOS.VDisk_ReadC=0
 set/p TextOS.VDiskModeInput=!TextOS.MountedDrive!:\
 if !TextOS.VDiskModeInput! == back cd.. && cd.. && goto menu
 if !TextOS.VDiskModeInput! == dir dir
 if !TextOS.VDiskModeInput! == read goto VDisk_Read
+if !TextOS.VDiskModeInput! == del goto VDisk_Del
+if !TextOS.VDiskModeInput! == help goto VDisk_Help
+
+
 if exist !TextOS.VDiskModeInput! "!TextOS.VDiskModeInput!"
 goto VDiskMode
 
 :VDisk_Read
-set/p TextOS.VDisk_ReadInput=Enter file to read (with file extension):
+set/p TextOS.VDisk_ReadInput=Enter file to read (with file extension): 
 if not exist !TextOS.VDisk_ReadInput! call :VDisk_404 && goto VDisk_Read
 
 type !TextOS.VDisk_ReadInput!
-set TextOS.VDisk_ReadC=1
+echo.
 goto VDiskMode
 
+:VDisk_Del
+set/p TextOS.VDisk_ReadInput=Enter file to delete (with file extension): 
+if not exist !TextOS.VDisk_ReadInput! call :VDisk_404 && goto VDisk_Del
+
+del !TextOS.VDisk_ReadInput!
+echo Deleted !TextOS.VDisk_ReadInput! successfully!
+echo.
+goto VDiskMode
+
+:VDisk_Help
+echo.
+echo This is a list of all commands:
+echo.
+echo back - goes back to the command prompt
+echo dir - shows dir
+echo read - reads a text file
+echo del - deletes a file
+echo help - display this text
+echo.
+echo Please note that folder support is not fully implemented, but some buggy folder deleting stuff in del MAY work.
+echo.
+goto VDiskMode
+
+
 :VDisk_404
-echo Could not find file. Please try again
+echo Could not find file. Please try again.
 pause >nul
 exit /b
 

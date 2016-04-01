@@ -1,10 +1,7 @@
-::Booter for Text OS, used to read the kernel.dll and other files.
+::Booter for Text OS, used to read the kernel.bat and other files.
 @echo off
 title Text OS Booter
 setlocal enabledelayedexpansion
-
-echo If you can read this then you use a very slow computer :)
-ping localhost -n 0.0001 >nul
 
 cls
 echo Text OS booter loading...
@@ -22,6 +19,8 @@ set BIOSSETUP=set
 !BIOSSETUP! BIOS_version=0.1.015
 !BIOSSETUP! BIOS_ram=5M
 set BIOSSETUP=exit
+
+
 
 :menu
 cls
@@ -50,7 +49,8 @@ goto menu
 :Boot
 cls
 !Oneup!
-echo Reading Kernel.dll...
+::echo Reading Kernel.dll...
+echo Reading Kernel.bat
 !timeout! 3 >nul
 cls
 call Kernel.bat
