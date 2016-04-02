@@ -3,6 +3,19 @@ title Text OS
 setlocal enabledelayedexpansion
 cd Data
 
+set username=Rasmusolle
+
+if not exist Downloads mkdir Downloads
+if not exist Users (
+ mkdir Users
+ cd Users
+ mkdir Shared
+ mkdir !username!
+ )
+cd Users
+if not exist !username! mkdir !username!
+cd..
+
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
 set TextOS.Version=0.1.062
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
@@ -16,6 +29,7 @@ set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
 set TextOS.RestartButSkipVariablesCmd=goto RBSVC
 set TextOS.HomeFolder=%cd%\data\homefolder
+set TextOS.DataFolder=%cd%
 ::set TextOS_SDK.FinalDebug=TESTY
 
 
@@ -185,6 +199,8 @@ goto menu
 :: ====================Text=OS=Command=Prompt====================
 
 :precmd
+cd Users
+cd !username!
 cls
 echo ====Text=OS=Command=Prompt====
 echo.
@@ -251,7 +267,7 @@ color !colorcode!
 goto cmd
 :helpcolor
 echo -----COLOR-----
-echo Changes the background and text color
+echo Changes the background and text color.
 echo List of colors:
 echo.
 echo 0  Black
@@ -268,8 +284,8 @@ echo A  Light Green
 echo B  Light Cyan 
 echo C  Light Red
 echo D  Light Magenta
-echo E  Light yellow
-echo F  Light White (lol how does that look like)
+echo E  Light Yellow
+echo F  Light White
 echo.
 echo The first color is the background, the second is the text.
 echo The default color code is 07.
@@ -277,6 +293,7 @@ echo If no color code is given, it will reset to the standard colors
 goto cmd
 
 :MountVirtualDisk
+cd !TextOS.DataFolder!
 cd VirtualDrives
 set /p TextOS.LatestVirtualDriveInput=Enter letter (ONLY THE LETTER): 
 set TextOS.MountedDrive=!TextOS.LatestVirtualDriveInput!
