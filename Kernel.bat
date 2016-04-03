@@ -3,18 +3,18 @@ title Text OS
 setlocal enabledelayedexpansion
 cd Data
 
-set username=Rasmusolle
+:: set username=Rasmusolle
 
-if not exist Downloads mkdir Downloads
-if not exist Users (
- mkdir Users
- cd Users
- mkdir Shared
- mkdir !username!
- )
-cd Users
-if not exist !username! mkdir !username!
-cd..
+:: if not exist Downloads mkdir Downloads
+:: if not exist Users (
+::  mkdir Users
+::  cd Users
+::  mkdir Shared
+::  mkdir !username!
+::  )
+:: cd Users
+:: if not exist !username! mkdir !username!
+:: cd..
 
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
 set TextOS.Version=0.1.062
@@ -61,11 +61,12 @@ if !BIOSSETUP! NEQ exit (
 				exit
 				)
 					
-if not defined Selection set TextOS.VarNotFound=^^!Selection^^!
-if not defined Timeout set TextOS.VarNotFound=^^!Timeout^^!
-if not defined Oneup set TextOS.VarNotFound=^^!Oneup^^!
-if not defined CLR set TextOS.VarNotFound=^^!CLR^^!
+if not defined Selection set TextOS.VarNotFound=^^!Selection^^! && goto Varcheck
+if not defined Timeout set TextOS.VarNotFound=^^!Timeout^^! && goto Varcheck
+if not defined Oneup set TextOS.VarNotFound=^^!Oneup^^! && goto Varcheck
+if not defined CLR set TextOS.VarNotFound=^^!CLR^^! && goto Varcheck
 
+:Varcheck
 if defined TextOS.VarNotFound (
 				echo The variable !TextOS.VarNotFound! is not defined. !UseBooterMsg!
 				echo For Booter developers, make sure your booter meets the requirements.
@@ -199,8 +200,8 @@ goto menu
 :: ====================Text=OS=Command=Prompt====================
 
 :precmd
-cd Users
-cd !username!
+:: cd Users
+:: cd !username!
 cls
 echo ====Text=OS=Command=Prompt====
 echo.
@@ -293,7 +294,7 @@ echo If no color code is given, it will reset to the standard colors
 goto cmd
 
 :MountVirtualDisk
-cd !TextOS.DataFolder!
+:: cd !TextOS.DataFolder!
 cd VirtualDrives
 set /p TextOS.LatestVirtualDriveInput=Enter letter (ONLY THE LETTER): 
 set TextOS.MountedDrive=!TextOS.LatestVirtualDriveInput!
