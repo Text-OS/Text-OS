@@ -21,7 +21,6 @@ set BIOSSETUP=set
 set BIOSSETUP=exit
 
 
-
 :menu
 cls
 echo                       ============================

@@ -1,3 +1,5 @@
+THIS IS OUTDATED!
+
 API strings:
 !Selection! - Shortcut for cmdmenusel. Example: !selection! "Start" "Exit"
 !Timeout! - Makes a timeout. Example: !Timeout! 3 >nul

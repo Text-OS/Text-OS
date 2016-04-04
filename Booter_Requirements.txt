@@ -13,3 +13,4 @@ BIOS variables:
 
 - A way to load and boot the kernel
 - sets BIOSSETUP to exit
+- OPTIONAL: A way to read the BIOS variables

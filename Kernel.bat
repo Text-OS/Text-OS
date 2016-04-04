@@ -220,6 +220,7 @@ if !TextOS.CmdPromptInput! == cls cls
 if !TextOS.CmdPromptInput! == secret goto DevPromptStart
 if !TextOS.CmdPromptInput! == color goto color
 if !TextOS.CmdPromptInput! == "help color" goto helpcolor
+:: if !TextOS.CmdPromptInput! == [PL] goto sumthing
 
 if !TextOS.CmdPromptInput! == vdisk goto MountVirtualDisk
 goto cmd
@@ -231,7 +232,7 @@ echo.
 echo ver/version - Shows TextOS and BIOS version 
 echo echo - echo mode
 echo dir - Shows the current directory
-echo dir/w - Shows a compressed version of the current directory
+::echo dir/w - Shows a compressed version of the current directory
 echo cls - Clears the screen
 echo color - Changes CMD color. Do help color for colorcodes
 echo vdisk - Virtual Disk
@@ -239,7 +240,7 @@ goto cmd
 
 :ver
 echo.
-echo Text OS version: !Version!
+echo Text OS version: !TextOS.Version!
 echo BIOS version: !BIOS_version!
 goto cmd
 

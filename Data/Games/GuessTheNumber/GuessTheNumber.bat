@@ -15,7 +15,6 @@ cls
 echo Guess The Number^^!
 echo.
 !Selection! "Start" "Exit to TextOS"
-::cmdmenusel f870 "Start" "Exit to TextOS"
 
 if %errorlevel% == 1 goto Intro
 if %errorlevel% == 2 exit /b
