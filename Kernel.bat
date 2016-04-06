@@ -27,7 +27,6 @@ set TextOS.MM=Error loading TextOS.BootedFromTextOS. Having this not set may cra
 set TextOS.SkipLoad=false
 set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
-set TextOS.RestartButSkipVariablesCmd=goto RBSVC
 set TextOS.HomeFolder=%cd%\data\homefolder
 set TextOS.DataFolder=%cd%
 ::set TextOS_SDK.FinalDebug=TESTY
@@ -83,9 +82,6 @@ if !TextOS.SkipLoad! == true goto menu
 cls
 echo Loading... 
 !Timeout! 2 >nul
-
-:: This is where the !TextOS.RestartButSkipVariablesCmd! Command from the dev prompt puts you, ignoring error check and variable setting.
-:RBSVC
 
 :menu
 :: the variable !username! uses your account name, for example, for me the variable is Rasmusolle because my windows acc name is Rasmusolle.
@@ -388,5 +384,5 @@ goto DevPrompt
 
 :DevInfo
 echo      This is a tool for developers to execute code through a prompt or to check variables.
-echo      To go back to TextOS, type ^^!TextOS.RestartButSkipVariablesCmd^^!
+echo      To go back to TextOS, type goto menu
 goto DevPrompt
