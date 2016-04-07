@@ -5,12 +5,12 @@ cd Data
 
 :: set username=Rasmusolle
 
-:: if not exist Downloads mkdir Downloads
 :: if not exist Users (
 ::  mkdir Users
 ::  cd Users
 ::  mkdir Shared
 ::  mkdir !username!
+::  cd !username! && echo This is an example file>> Example.txt && cd..
 ::  )
 :: cd Users
 :: if not exist !username! mkdir !username!
@@ -21,7 +21,7 @@ set TextOS.Version=0.1.062
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
 set TextOS.BootedFromTextOS=1
 set TextOS.RandomNumber=%random%
-set TextOS.DevMode=0
+if not defined TextOS.DevMode set TextOS.DevMode=0
 set TextOS.UseBooterMsg=Make sure you boot from the booter.
 set TextOS.MM=Error loading TextOS.BootedFromTextOS. Having this not set may crash Text-OS programs.
 set TextOS.SkipLoad=false
@@ -216,6 +216,8 @@ if !TextOS.CmdPromptInput! == cls cls
 if !TextOS.CmdPromptInput! == secret goto DevPromptStart
 if !TextOS.CmdPromptInput! == color goto color
 if !TextOS.CmdPromptInput! == "help color" goto helpcolor
+if !TextOS.CmdPromptInput! == back goto menu
+
 :: if !TextOS.CmdPromptInput! == [PL] goto sumthing
 
 if !TextOS.CmdPromptInput! == vdisk goto MountVirtualDisk
