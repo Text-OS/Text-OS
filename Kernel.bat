@@ -97,7 +97,7 @@ if %errorlevel% == 1 goto precmd
 if %errorlevel% == 2 goto Programs
 if %errorlevel% == 3 goto Games
 if %errorlevel% == 4 goto HomeDirectory
-if %errorlevel% == 5 goto cmd
+if %errorlevel% == 5 exit
 goto menu
 
 :: ====================Programs====================
