@@ -40,5 +40,8 @@ SOFTWARE.
 ```
 <br><br>
 
+# Give me an internet
+<a href='http://internetometer.com/give/42442'><img src='http://internetometer.com/image/42442.png'/></a>
+
 <!-- # Website
 Coming soon -->
