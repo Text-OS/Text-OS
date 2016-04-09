@@ -10,8 +10,6 @@ echo Text OS booter loading...
 ping localhost -n 2 >nul
 cd Data
 
-
-
 ::Setting up custom commands
 set Selection=cmdmenusel f870
 set Timeout=ping localhost -n
@@ -23,7 +21,6 @@ set BIOSSETUP=set
 !BIOSSETUP! BIOS_version=0.1.015
 !BIOSSETUP! BIOS_ram=5M
 set BIOSSETUP=exit
-
 
 :menu
 cls
