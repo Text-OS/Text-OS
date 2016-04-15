@@ -59,7 +59,6 @@ exit
 :Boot
 cls
 !Oneup!
-::echo Reading Kernel.dll...
 echo Reading Kernel.bat
 !timeout! 3 >nul
 cls

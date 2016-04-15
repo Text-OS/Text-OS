@@ -1,32 +1,28 @@
+# ==================================
+# Stuff I don't want to show
+# ==================================
 
 Generictemplate.template
 *.doc#
+gource.bat
 
 # ==================================
 # Operating System Trash Files
 # ==================================
 
-# Windows
-
-# Cache files
+## Windows
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 
-# Mac
+## Mac
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Thumbnails
 ._*
-
-# Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-
-# Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
 Network Trash Folder

@@ -227,13 +227,14 @@ goto cmd
 echo.
 echo This is a list of all commands.
 echo.
-echo ver/version - Shows TextOS and BIOS version 
-echo echo - echo mode
-echo dir - Shows the current directory
+echo ver/version - Shows TextOS and BIOS version.
+echo echo - echo mode.
+echo dir - Shows the current directory.
 ::echo dir/w - Shows a compressed version of the current directory
-echo cls - Clears the screen
-echo color - Changes CMD color. Do help color for colorcodes
-echo vdisk - Virtual Disk
+echo cls - Clears the screen.
+echo color - Changes CMD color. Do help color for colorcodes.
+echo vdisk - Virtual Disk.
+echo back - Goes back to the main menu.
 goto cmd
 
 :ver
