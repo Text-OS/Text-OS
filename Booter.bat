@@ -3,12 +3,12 @@
 title Text OS Booter
 setlocal enabledelayedexpansion
 
-if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
-
 cls
 echo Text OS booter loading...
 ping localhost -n 2 >nul
 cd Data
+
+if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
 
 ::Setting up custom commands
 set Selection=cmdmenusel f870

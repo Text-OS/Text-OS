@@ -106,11 +106,12 @@ goto menu
 cls
 echo ===============PROGRAMS==============
 echo.
-!Selection! "Calculator" "Text-OS Browser" "Back To Menu"
+!Selection! "Calculator" "Text-OS Browser" "Zombo.com Text Edition" "Back To Menu"
 
 if %errorlevel% == 1 goto Calc
 if %errorlevel% == 2 goto Browser
-if %errorlevel% == 3 goto menu
+if %errorlevel% == 3 goto ZomboCom
+if %errorlevel% == 4 goto menu
 call :WrongErrorlevel
 goto Programs
 
@@ -136,11 +137,8 @@ title !TextOS.Standardtitle!
 cd.. && cd..
 goto menu
 
-:: Zombocom Text Edition! The folders and code here is working, but no real file is existing.
 :ZomboCom
 cls
-
-goto Programs
 cd Programs
 cd Zombocom_Text_Edition
 set TextOS.FileToExecute=Start.bat
