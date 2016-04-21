@@ -1,10 +1,15 @@
+:: set username=Rasmusolle
 
-
-echo ^^!--DEBUG--^^!
-echo.
-echo Do you want to do a FinalDebug Test?
-!Selection! "Yes" "No"
-if %errorlevel% == 1 set TextOS_SDK.FinalDebug=TESTY
+:: if not exist Users (
+::  mkdir Users
+::  cd Users
+::  mkdir Shared
+::  mkdir !username!
+::  cd !username! && echo This is an example file>> Example.txt && cd..
+::  )
+:: cd Users
+:: if not exist !username! mkdir !username!
+:: cd..
 
 
 :: "Open the Text-OS website"

@@ -3,18 +3,8 @@ title Text OS
 setlocal enabledelayedexpansion
 cd Data
 
-:: set username=Rasmusolle
+if defined TextOS_SDK.FinalDebug goto FinalDebug
 
-:: if not exist Users (
-::  mkdir Users
-::  cd Users
-::  mkdir Shared
-::  mkdir !username!
-::  cd !username! && echo This is an example file>> Example.txt && cd..
-::  )
-:: cd Users
-:: if not exist !username! mkdir !username!
-:: cd..
 
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
 set TextOS.Version=0.1.062
@@ -361,13 +351,14 @@ echo This is coming soon.
 pause >nul
 goto menu
 
-:AppDebugger_Load
-cls
-:loop
-set /a count+=1
-echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-if !count! GTR 50 goto AppDebugger_Start
-goto loop
+:FinalDebug
+echo ^^!--DEBUG--^^!
+echo.
+echo Do you want to do a FinalDebug Test?
+!Selection! "Yes" "No"
+if %errorlevel% == 1 goto FinalDebug_Start
+if %errorlevel% == 2 goto 
+
 :AppDebugger_Start
 cls
 set/p TextOS.AppDebugger_Input=Enter File to debug (WITHOUT FILE EXTENSION): 
