@@ -352,15 +352,20 @@ pause >nul
 goto menu
 
 :FinalDebug
+cls
 echo ^^!--DEBUG--^^!
 echo.
 echo Do you want to do a FinalDebug Test?
 !Selection! "Yes" "No"
 if %errorlevel% == 1 goto FinalDebug_Start
-if %errorlevel% == 2 goto 
+if %errorlevel% == 2 exit
 
-:AppDebugger_Start
+:FinalDebug_Start
 cls
+if defined TextOS_SDK.FileToDebug (
+ call !TextOS_SDK.FileToDebug!
+
+)
 set/p TextOS.AppDebugger_Input=Enter File to debug (WITHOUT FILE EXTENSION): 
 call !TextOS.AppDebugger_Input!.bat
 exit
