@@ -12,7 +12,7 @@ set TextOS.RandomNumber=%random%
 if not defined TextOS.DevMode set TextOS.DevMode=0
 set TextOS.UseBooterMsg=Make sure you boot from the booter.
 set TextOS.MM=Error loading TextOS.BootedFromTextOS. Having this not set may crash Text-OS programs.
-set TextOS.SkipLoad=false
+set TextOS.SkipLoad=true
 set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
 set TextOS.HomeFolder=%cd%\data\homefolder
@@ -196,8 +196,10 @@ if !TextOS.CmdPromptInput! == dir/w dir/w
 if !TextOS.CmdPromptInput! == cls cls
 if !TextOS.CmdPromptInput! == secret goto DevPromptStart
 if !TextOS.CmdPromptInput! == color goto color
-if !TextOS.CmdPromptInput! == "help color" goto helpcolor
-if !TextOS.CmdPromptInput! == back goto menu
+if !TextOS.CmdPromptInput! == helpcolor goto helpcolor
+if !TextOS.CmdPromptInput! == back color 07 && goto menu
+
+if !TextOS.CmdPromptInput! == ping echo pong!
 
 :: if !TextOS.CmdPromptInput! == [PL] goto sumthing
 
@@ -213,7 +215,7 @@ echo echo - echo mode.
 echo dir - Shows the current directory.
 ::echo dir/w - Shows a compressed version of the current directory
 echo cls - Clears the screen.
-echo color - Changes CMD color. Do help color for colorcodes.
+echo color - Changes CMD color. Do helpcolor for colorcodes.
 echo vdisk - Virtual Disk.
 echo back - Goes back to the main menu.
 goto cmd
