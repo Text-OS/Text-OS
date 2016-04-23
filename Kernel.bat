@@ -57,11 +57,11 @@ if not defined CLR set TextOS.VarNotFound=^^!CLR^^! && goto Varcheck
 
 :Varcheck
 if defined TextOS.VarNotFound (
-				echo The variable !TextOS.VarNotFound! is not defined. !UseBooterMsg!
-				echo For Booter developers, make sure your booter meets the requirements.
-				pause >nul
-				exit
-				)
+                echo The variable !TextOS.VarNotFound! is not defined. !UseBooterMsg!
+                echo For Booter developers, make sure your booter meets the requirements.
+                pause >nul
+                exit
+                )
 
 if not exist cmdmenusel.exe echo Error loading cmdmenusel.exe. && pause >nul && exit
 if not defined TextOS.BootedFromTextOS echo !TextOS.MM! && pause >nul && exit
