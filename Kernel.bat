@@ -24,32 +24,32 @@ set TextOS.DataFolder=%cd%
 
 :: SDK stuff
 if defined TextOS_SDK.FinalDebug (
-				set TextOS.FinalDebugMode=1
-				goto AppDebugger_Load
-				) 
+                set TextOS.FinalDebugMode=1
+                goto AppDebugger_Load
+                ) 
 
 :: Errors
 if not defined BIOS_ram (
-				echo Error loading RAM. !TextOS.UseBooterMsg!
-				echo For Booter developers, make sure your booter meets the requirements.
-				pause >nul
-				exit
-				)
+                echo Error loading RAM. !TextOS.UseBooterMsg!
+                echo For Booter developers, make sure your booter meets the requirements.
+                pause >nul
+                exit
+                )
 
 if not defined BIOS_version (
-				echo Error loading BIOS version. !TextOS.UseBooterMsg!
-				echo For Booter developers, make sure your booter meets the requirements.
-				pause >nul
-				exit
-				)
+                echo Error loading BIOS version. !TextOS.UseBooterMsg!
+                echo For Booter developers, make sure your booter meets the requirements.
+                pause >nul
+                exit
+                )
 
 if !BIOSSETUP! NEQ exit (
-				echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
-				echo For Booter developers, make sure your booter meets the requirements.
-				pause >nul
-				exit
-				)
-					
+                echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
+                echo For Booter developers, make sure your booter meets the requirements.
+                pause >nul
+                exit
+                )
+
 if not defined Selection set TextOS.VarNotFound=^^!Selection^^! && goto Varcheck
 if not defined Timeout set TextOS.VarNotFound=^^!Timeout^^! && goto Varcheck
 if not defined Oneup set TextOS.VarNotFound=^^!Oneup^^! && goto Varcheck
