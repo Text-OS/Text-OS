@@ -3,8 +3,6 @@ title Text OS
 setlocal enabledelayedexpansion
 cd Data
 
-if defined TextOS_SDK.FinalDebug goto FinalDebug
-
 
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
 set TextOS.Version=0.1.062
@@ -19,14 +17,10 @@ set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
 set TextOS.HomeFolder=%cd%\data\homefolder
 set TextOS.DataFolder=%cd%
-::set TextOS_SDK.FinalDebug=TESTY
 
 
-:: SDK stuff
-if defined TextOS_SDK.FinalDebug (
-                set TextOS.FinalDebugMode=1
-                goto AppDebugger_Load
-                ) 
+if defined TextOS_SDK.FinalDebug goto FinalDebug
+
 
 :: Errors
 if not defined BIOS_ram (
@@ -63,7 +57,6 @@ if defined TextOS.VarNotFound (
                 exit
                 )
 
-if not exist cmdmenusel.exe echo Error loading cmdmenusel.exe. && pause >nul && exit
 if not defined TextOS.BootedFromTextOS echo !TextOS.MM! && pause >nul && exit
 
 title !TextOS.StandardTitle!
@@ -281,6 +274,8 @@ echo The default color code is 07.
 echo If no color code is given, it will reset to the standard colors
 goto cmd
 
+
+
 :MountVirtualDisk
 :: cd !TextOS.DataFolder!
 cd VirtualDrives
@@ -364,7 +359,6 @@ if %errorlevel% == 2 exit
 cls
 if defined TextOS_SDK.FileToDebug (
  call !TextOS_SDK.FileToDebug!
-
 )
 set/p TextOS.AppDebugger_Input=Enter File to debug (WITHOUT FILE EXTENSION): 
 call !TextOS.AppDebugger_Input!.bat
