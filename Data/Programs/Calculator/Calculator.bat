@@ -6,6 +6,8 @@
 title Batch Calculator
 setlocal enabledelayedexpansion
 
+cd.. && cd..
+
 REM Check if its running from TextOS or not.
 if not defined TextOS.BootedFromTextOS set Selection=cmdmenusel f870
 
