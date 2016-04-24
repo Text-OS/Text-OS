@@ -3,7 +3,6 @@ title Text OS
 setlocal enabledelayedexpansion
 cd Data
 
-
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
 set TextOS.Version=0.1.062
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
@@ -187,21 +186,16 @@ echo.
 :cmd
 set/p TextOS.CmdPromptInput=^>
 
-if !TextOS.CmdPromptInput! == help echo Coming soon!
+if !TextOS.CmdPromptInput! == help goto help
 if !TextOS.CmdPromptInput! == ver goto ver
-if !TextOS.CmdPromptInput! == version goto ver
 if !TextOS.CmdPromptInput! == echo goto echo
-if !TextOS.CmdPromptInput! == dir dir
-if !TextOS.CmdPromptInput! == dir/w dir/w
 if !TextOS.CmdPromptInput! == cls cls
 if !TextOS.CmdPromptInput! == secret goto DevPromptStart
 if !TextOS.CmdPromptInput! == color goto color
 if !TextOS.CmdPromptInput! == helpcolor goto helpcolor
 if !TextOS.CmdPromptInput! == back color 07 && goto menu
 
-if !TextOS.CmdPromptInput! == ping echo pong!
-
-:: if !TextOS.CmdPromptInput! == [PL] goto sumthing
+if !TextOS.CmdPromptInput! == wiki set wiki_url=https://github.com/Text-OS/Text-OS/wiki && call :wiki
 
 if !TextOS.CmdPromptInput! == vdisk goto MountVirtualDisk
 goto cmd
@@ -210,14 +204,13 @@ goto cmd
 echo.
 echo This is a list of all commands.
 echo.
-echo ver/version - Shows TextOS and BIOS version.
+echo ver - Shows TextOS and BIOS version.
 echo echo - echo mode.
-echo dir - Shows the current directory.
-::echo dir/w - Shows a compressed version of the current directory
 echo cls - Clears the screen.
 echo color - Changes CMD color. Do helpcolor for colorcodes.
-echo vdisk - Virtual Disk.
+echo wiki - Goes to the Text-OS wiki.
 echo back - Goes back to the main menu.
+echo vdisk - Virtual Disk.
 goto cmd
 
 :ver
@@ -231,6 +224,8 @@ set /a echo_mode+=1
 echo.
 echo You are in echo mode.
 set/p ECHO_INPUT=Enter: 
+echo.
+echo !ECHO_INPUT!
 goto cmd
 
 :: This might be changed/deleted in the future
@@ -277,7 +272,6 @@ echo If no color code is given, it will reset to the standard colors
 goto cmd
 
 
-
 :MountVirtualDisk
 :: cd !TextOS.DataFolder!
 cd VirtualDrives
@@ -299,6 +293,7 @@ if !TextOS.VDiskModeInput! == read goto VDisk_Read
 if !TextOS.VDiskModeInput! == del goto VDisk_Del
 if !TextOS.VDiskModeInput! == help goto VDisk_Help
 
+if !TextOS.VDiskModeInput! == wiki set wiki_url=https://github.com/Text-OS/Text-OS/wiki/VDisk-Mode && call :wiki
 
 if exist !TextOS.VDiskModeInput! "!TextOS.VDiskModeInput!"
 goto VDiskMode
@@ -328,6 +323,7 @@ echo back - goes back to the command prompt
 echo dir - shows dir
 echo read - reads a text file
 echo del - deletes a file
+echo wiki - goes to the VDisk hub on the wiki
 echo help - display this text
 echo.
 echo Please note that folder support is not fully implemented, but some buggy folder deleting stuff in del MAY work.
@@ -341,6 +337,15 @@ pause >nul
 exit /b
 
 :: ====================Text=OS=Command=Prompt=End===================
+
+
+:wiki
+if exist USECHROME.txt set browser=Chrome.exe 
+if exist USEFIREFOX.txt set browser=Firefox.exe
+if not defined browser set browser=iexplore.exe
+start !browser! !wiki_url!
+exit /b
+
 
 :HomeDirectory
 cls
