@@ -6,6 +6,11 @@ Generictemplate.template
 *.doc#
 gource.bat
 
+## USE files
+USECHROME.txt
+USEFIREFOX.txt
+
+
 # ==================================
 # Operating System Trash Files
 # ==================================
