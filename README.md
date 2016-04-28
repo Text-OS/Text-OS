@@ -1,4 +1,4 @@
-# Text-OS
+# Text-OS [![latest release](https://img.shields.io/github/release/Text-OS/Text-OS.svg?label=latest%20release)](https://github.com/Text-OS/Text-OS/releases/latest)
 Text OS is an Operating System in batch. <br>
 Know batch? Wanna contribute? Read guidelines below
 
