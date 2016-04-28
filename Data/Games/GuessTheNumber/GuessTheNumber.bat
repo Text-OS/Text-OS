@@ -1,5 +1,5 @@
 ::=======================
-:: Guess The Number 0.8
+:: Guess The Number 1.0
 ::    By RasmusOlle
 ::=======================
 @echo off
@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 
 if not defined TextOS.BootedFromTextOS exit
 
-set GTN.Version=0.8
+set GTN.Version=1.0
 
 :menu
 cls

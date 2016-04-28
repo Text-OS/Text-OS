@@ -3,10 +3,13 @@
 title Text OS Booter
 setlocal enabledelayedexpansion
 
+if exist devpls.txt set TextOS.DevMode=1
+
 cls
 echo Text OS booter loading...
 ping localhost -n 2 >nul
 cd Data
+
 
 if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
 
