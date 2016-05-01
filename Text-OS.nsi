@@ -1,8 +1,6 @@
 ;This is the installer for Text-OS, made with NSIS (MUI).
 ;The example script that this is based on this is written by Joost Verburg
 
-;NOTE - WE MIGHT NOT USE THIS OR MAKE AN INSTALLER IN BATCH
-
 ;--------------------------------
 ;Define
 
@@ -23,7 +21,7 @@
   Name "Text OS ${PRODUCT_VERSION}"
   OutFile "Setup.exe"
   
-  InstallDir "$PROGRAMFILES\Text-OS\"
+  InstallDir "C:\Text-OS\"
   
   ;Get installation folder from registry if available
   InstallDirRegKey HKCU "Software\TEXT-OS" ""
@@ -78,6 +76,11 @@ FunctionEnd
 Section "Core" SecCore
 
   SectionIn RO
+  
+  ; Thx DTTB
+  AccessControl::GrantOnFile \
+    "$INSTDIR" "(BU)" "FullAccess"
+  Pop $0
 
   SetOutPath "$INSTDIR"
   File Booter.bat
@@ -93,6 +96,7 @@ Section "Core" SecCore
   
   ;Games folder
   SetOutPath "$INSTDIR\Data\Games"
+  
   SetOutPath "$INSTDIR\Data\Games\GuessTheNumber"
   File "Data\Games\GuessTheNumber\GuessTheNumber.bat"
   File "Data\Games\GuessTheNumber\cmdmenusel.exe"
@@ -102,7 +106,6 @@ Section "Core" SecCore
 
   SetOutPath "$INSTDIR\Data\Programs\Calculator"
   File "Data\Programs\Calculator\Calculator.bat"
-  File "Data\Programs\Calculator\cmdmenusel.exe"
 
   SetOutPath "$INSTDIR\Data\Programs\Browser"
   File "Data\Programs\Browser\Browser_Start.bat"
@@ -112,6 +115,9 @@ Section "Core" SecCore
   CreateDirectory "$INSTDIR\Data\Programs\Browser\temp"
   SetOutPath "$INSTDIR\Data\Programs\Browser\temp"
   
+  SetOutPath "$INSTDIR\Data\Programs\Zombocom_Text_Edition"
+  File "Data\Programs\Zombocom_Text_Edition\Start.bat"
+  File "Data\Programs\Zombocom_Text_Edition\zombo.mp3"
   
   ;VirtualDrives folder
   SetOutPath "$INSTDIR\Data\VirtualDrives"
@@ -120,16 +126,15 @@ Section "Core" SecCore
   
   
   ;Start Menu Shortcuts
+  SetOutPath "$INSTDIR"
   CreateDirectory "$SMPROGRAMS\Text-OS\"
   CreateShortCut "$SMPROGRAMS\Text-OS\Start Text-OS.lnk" "$INSTDIR\Booter.bat"
-  CreateShortCut "$SMPROGRAMS\Text-OS\Open Calculator (External).lnk" "$INSTDIR\Data\Calculator\Calculator.bat"
   CreateShortCut "$SMPROGRAMS\Text-OS\Uninstall Text-OS.lnk" "$INSTDIR\Uninstall.exe"
   
   ;Store installation folder
   WriteRegStr HKCU "Software\TEXT-OS" "" $INSTDIR
   
   ;Uninstaller work
-  
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TEXT-OS\" "DisplayName" "Text-OS (Uninstall)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TEXT-OS\" "UninstallString" "$INSTDIR\uninstall.exe"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TEXT-OS\" "NoModify" 1
@@ -137,6 +142,12 @@ Section "Core" SecCore
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TEXT-OS\" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TEXT-OS\" "Publisher" "RasmusOlle"
   WriteUninstaller "$INSTDIR\Uninstall.exe"
+
+SectionEnd
+
+Section "Desktop Shortcut" SecDS  ; Nothing to do with Nintendo DS!
+  
+  CreateShortCut "$DESKTOP\Start Text-OS.lnk" "$INSTDIR\booter.bat"
 
 SectionEnd
 
@@ -152,13 +163,15 @@ SectionEnd
 
 
   LangString DESC_SecCore ${LANG_ENGLISH} "Core files (Required)"
+  LangString DESC_SecDS ${LANG_ENGLISH} "Desktop Shortcut"
   LangString DESC_SecXtra ${LANG_ENGLISH} "Extra stuff"
+  
   
   ;Assign language strings to sections
   !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
     !insertmacro MUI_DESCRIPTION_TEXT ${SecCore} $(DESC_SecCore)
+	!insertmacro MUI_DESCRIPTION_TEXT ${SecDS} $(DESC_SecDS)
 	!insertmacro MUI_DESCRIPTION_TEXT ${SecXtra} $(DESC_SecXtra)
-	
   !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ;--------------------------------
@@ -170,6 +183,9 @@ Section "Uninstall"
   Delete "$INSTDIR\Booter.bat"
   Delete "$INSTDIR\Kernel.bat"
   Delete "$INSTDIR\Changelog.txt"
+  Delete "$INSTDIR\Uninstall.exe"
+  
+  Delete "$DESKTOP\Start Text-OS.lnk"
   
   RMDir /r "$SMPROGRAMS\Text-OS\"
 
