@@ -21,6 +21,8 @@
   Name "Text OS ${PRODUCT_VERSION}"
   OutFile "Setup.exe"
   
+  BrandingText "Text-OS"
+  
   InstallDir "C:\Text-OS\"
   
   ;Get installation folder from registry if available
