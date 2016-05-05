@@ -38,7 +38,7 @@ if !GTN.Input! GTR !GTN.Number! set GTN.AImsg=Less^^! && goto TheGame
 :YouWon
 cls
 echo You won^^!
-echo You had !GTN.Tries! until you found the correct one^^!
+echo You had !GTN.Tries! tries until you found the correct one^^!
 echo And the number was !GTN.Number!.
 pause >nul
 goto menu
