@@ -10,6 +10,9 @@ gource.bat
 USECHROME.txt
 USEFIREFOX.txt
 
+## NSIS
+Setup.exe
+
 
 # ==================================
 # Operating System Trash Files
