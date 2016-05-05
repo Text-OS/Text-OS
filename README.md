@@ -1,4 +1,6 @@
 # Text-OS [![latest release](https://img.shields.io/github/release/Text-OS/Text-OS.svg?label=latest%20release)](https://github.com/Text-OS/Text-OS/releases/latest) [![Github All Releases](https://img.shields.io/github/downloads/Text-OS/Text-OS/total.svg?maxAge=2592000)]()
+
+[![Join the chat at https://gitter.im/Text-OS/Text-OS](https://badges.gitter.im/Text-OS/Text-OS.svg)](https://gitter.im/Text-OS/Text-OS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Text OS is an Operating System in batch. <br>
 Know batch? Wanna contribute? Read guidelines below
 
