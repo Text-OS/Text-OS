@@ -6,6 +6,7 @@ Generictemplate.template
 *.doc#
 gource.bat
 
+
 ## USE files
 USECHROME.txt
 USEFIREFOX.txt
@@ -13,6 +14,8 @@ USEFIREFOX.txt
 ## NSIS
 Setup.exe
 
+## Misc.
+colorcode.dat
 
 # ==================================
 # Operating System Trash Files

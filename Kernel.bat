@@ -195,6 +195,10 @@ if !TextOS.CmdPromptInput! == color goto color
 if !TextOS.CmdPromptInput! == helpcolor goto helpcolor
 if !TextOS.CmdPromptInput! == back color 07 && goto menu
 
+if !TextOS.CmdPromptInput! == savecolor goto savecolor
+if !TextOS.CmdPromptInput! == loadcolor goto loadcolor
+
+
 if !TextOS.CmdPromptInput! == wiki set wiki_url=https://github.com/Text-OS/Text-OS/wiki && call :wiki
 
 if !TextOS.CmdPromptInput! == vdisk goto MountVirtualDisk
@@ -208,6 +212,8 @@ echo ver - Shows TextOS and BIOS version.
 echo echo - echo mode.
 echo cls - Clears the screen.
 echo color - Changes CMD color. Do helpcolor for colorcodes.
+echo savecolor - Saves colorcode
+echo loadcolor - Loads colorcode
 echo wiki - Goes to the Text-OS wiki.
 echo back - Goes back to the main menu.
 echo vdisk - Virtual Disk.
@@ -268,8 +274,29 @@ echo F  Light White
 echo.
 echo The first color is the background, the second is the text.
 echo The default color code is 07.
-echo If no color code is given, it will reset to the standard colors
+echo If no color code is given, then it will reset to the standard colors
 goto cmd
+
+:savecolor
+if not defined colorcode (
+ echo Colorcode not set.
+ goto cmd
+) else (
+ echo !colorcode!>> colorcode.dat
+ goto cmd
+)
+
+:loadcolor
+if not exist colorcode.dat (
+ echo Colorcode not found.
+ goto cmd
+) else (
+ < colorcode.dat (
+  set /p colorcode=
+ )
+ color !colorcode!
+ goto cmd
+)
 
 
 :MountVirtualDisk
@@ -384,3 +411,8 @@ goto DevPrompt
 echo      This is a tool for developers to execute code through a prompt or to check variables.
 echo      To go back to TextOS, type goto menu
 goto DevPrompt
+
+
+
+
+

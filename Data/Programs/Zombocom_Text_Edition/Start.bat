@@ -1,3 +1,4 @@
+:: Made by RasmusOlle for Text-OS
 @echo off
 title ZOMBO COM
 setlocal enabledelayedexpansion

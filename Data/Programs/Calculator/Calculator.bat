@@ -1,7 +1,7 @@
-::=======================
-::   Calculator  1.0
-::    By RasmusOlle
-::=======================
+::=======================::
+::   Calculator  1.0     ::
+::    By RasmusOlle      ::
+::=======================::
 @echo off
 title Batch Calculator
 setlocal enabledelayedexpansion

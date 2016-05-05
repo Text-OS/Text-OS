@@ -1,14 +1,14 @@
-::=======================
-:: Guess The Number 1.0
-::    By RasmusOlle
-::=======================
+::=======================::
+:: Guess The Number 1.01 ::
+::    By RasmusOlle      ::
+::=======================::
 @echo off
 title Guess The Number
 setlocal enabledelayedexpansion
 
 if not defined TextOS.BootedFromTextOS exit
 
-set GTN.Version=1.0
+set GTN.Version=1.01
 
 :menu
 cls
