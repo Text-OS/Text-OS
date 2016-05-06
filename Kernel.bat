@@ -73,12 +73,12 @@ echo.
 echo Hello !username!. Welcome to the Text-OS menu.
 echo You are running Text-OS !TextOS.Version!
 echo.
-!Selection! "Command Prompt" "Programs" "Games" "Home Directory" "Exit"
+!Selection! "Command Prompt" "Programs" "Games" "Settings" "Exit"
 
 if %errorlevel% == 1 goto precmd
 if %errorlevel% == 2 goto Programs
 if %errorlevel% == 3 goto Games
-if %errorlevel% == 4 goto HomeDirectory
+if %errorlevel% == 4 goto Settings_Main
 if %errorlevel% == 5 exit
 goto menu
 
@@ -364,6 +364,39 @@ pause >nul
 exit /b
 
 :: ====================Text=OS=Command=Prompt=End===================
+
+
+:: ====================Settings===================
+
+
+:Settings_Main
+cls
+echo ===SETTINGS===
+echo.
+!Selection! "Wipe saved colorcode" "" "Back"
+
+if %errorlevel% == 1 goto Wipe_Saved_Colorcode
+if %errorlevel% == 2 goto Settings_Main
+if %errorlevel% == 3 goto menu
+goto Settings_Main
+
+
+:Wipe_Saved_Colorcode
+cls
+if not exist colorcode.dat echo No colorcode found. && pause >nul && goto menu
+:: else if it exists, confirm to delete it
+echo This will delete the saved colorcode, are you sure?
+echo.
+!Selection! "Yes" "No"
+if %errorlevel% == 1 (
+ del colorcode.dat
+ goto Settings_Main
+)
+if %errorlevel% == 2 goto Settings_Main
+goto Settings_Main
+
+:: ====================Settings End===================
+
 
 
 :wiki
