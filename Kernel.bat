@@ -3,6 +3,21 @@ title Text OS
 setlocal enabledelayedexpansion
 cd Data
 
+if not exist Users (
+ mkdir Users
+ cd Users
+ mkdir Shared
+ mkdir !username!
+ cd !username! && echo This is an example file>> Example.txt && cd..
+)
+else (
+ cd Users
+ if not exist !username! mkdir !username!
+ if not exist Shared mkdir Shared
+ cd..
+)
+
+
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
 set TextOS.Version=0.1.062
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
@@ -199,6 +214,7 @@ if !TextOS.CmdPromptInput! == savecolor goto savecolor
 if !TextOS.CmdPromptInput! == loadcolor goto loadcolor
 
 
+if !TextOS.CmdPromptInput! == ping echo pong^^!
 if !TextOS.CmdPromptInput! == wiki set wiki_url=https://github.com/Text-OS/Text-OS/wiki && call :wiki
 
 if !TextOS.CmdPromptInput! == vdisk goto MountVirtualDisk
@@ -278,23 +294,29 @@ echo If no color code is given, then it will reset to the standard colors
 goto cmd
 
 :savecolor
+cd %datafolder% && cd Users && cd !username!
 if not defined colorcode (
  echo Colorcode not set.
+ cd.. && cd..
  goto cmd
 ) else (
  echo !colorcode!>> colorcode.dat
+ cd.. && cd..
  goto cmd
 )
 
 :loadcolor
+cd %datafolder% && cd Users && cd !username!
 if not exist colorcode.dat (
  echo Colorcode not found.
+ cd.. && cd..
  goto cmd
 ) else (
  < colorcode.dat (
   set /p colorcode=
  )
  color !colorcode!
+ cd.. && cd..
  goto cmd
 )
 

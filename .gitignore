@@ -2,11 +2,6 @@
 # Stuff I don't want to show
 # ==================================
 
-Generictemplate.template
-*.doc#
-gource.bat
-
-
 ## USE files
 USECHROME.txt
 USEFIREFOX.txt
@@ -16,6 +11,16 @@ Setup.exe
 
 ## Misc.
 colorcode.dat
+
+
+# ==================================
+# Personal Stuff
+# ==================================
+
+Generictemplate.template
+*.doc#
+gource.bat
+
 
 # ==================================
 # Operating System Trash Files

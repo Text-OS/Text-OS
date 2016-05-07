@@ -1,17 +1,2 @@
 :: set username=Rasmusolle
 
-:: if not exist Users (
-::  mkdir Users
-::  cd Users
-::  mkdir Shared
-::  mkdir !username!
-::  cd !username! && echo This is an example file>> Example.txt && cd..
-::  )
-:: cd Users
-:: if not exist !username! mkdir !username!
-:: cd..
-
-
-:: "Open the Text-OS website"
-
-if %errorlevel% == 5 goto Website
