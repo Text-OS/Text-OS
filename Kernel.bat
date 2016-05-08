@@ -3,6 +3,8 @@ title Text OS
 setlocal enabledelayedexpansion
 cd Data
 
+set TextOS.realusername=!username!
+
 if not exist Users (
  mkdir Users
  cd Users
@@ -12,7 +14,16 @@ if not exist Users (
 )
 else (
  cd Users
- if not exist !username! mkdir !username!
+ if not exist !username! (
+  if exist !username!.redirect (
+   < !TextOS.realusername!.redirect (
+   set /p username=
+   )
+   if not exist !username! mkdir !username!
+  ) else (
+  mkdir !username!
+  )
+ )
  if not exist Shared mkdir Shared
  cd..
 )
@@ -294,7 +305,7 @@ echo If no color code is given, then it will reset to the standard colors
 goto cmd
 
 :savecolor
-cd %datafolder% && cd Users && cd !username!
+cd !TextOS.DataFolder! && cd Users && cd !username!
 if not defined colorcode (
  echo Colorcode not set.
  cd.. && cd..
@@ -306,7 +317,7 @@ if not defined colorcode (
 )
 
 :loadcolor
-cd %datafolder% && cd Users && cd !username!
+cd !TextOS.DataFolder! && cd Users && cd !username!
 if not exist colorcode.dat (
  echo Colorcode not found.
  cd.. && cd..
@@ -395,13 +406,24 @@ exit /b
 cls
 echo ===SETTINGS===
 echo.
-!Selection! "Wipe saved colorcode" "" "Back"
+!Selection! "Change username (Restart required)" "Wipe saved colorcode" "" "Back"
 
-if %errorlevel% == 1 goto Wipe_Saved_Colorcode
-if %errorlevel% == 2 goto Settings_Main
-if %errorlevel% == 3 goto menu
+if %errorlevel% == 1 goto Change_Username
+if %errorlevel% == 2 goto Wipe_Saved_Colorcode
+if %errorlevel% == 3 goto Settings_Main
+if %errorlevel% == 4 goto menu
 goto Settings_Main
 
+
+:Change_Username
+cls
+cd !TextOS.DataFolder! && cd Users
+set/p TextOS.CU_changeto=Enter username to change to: 
+if exist !TextOS.realusername!.redirect del !TextOS.realusername!.redirect
+echo !TextOS.CU_changeto!>> !TextOS.realusername!.redirect
+ren !username! !TextOS.CU_changeto!
+cd..
+goto Settings_Main
 
 :Wipe_Saved_Colorcode
 cls
@@ -416,6 +438,7 @@ if %errorlevel% == 1 (
 )
 if %errorlevel% == 2 goto Settings_Main
 goto Settings_Main
+
 
 :: ====================Settings End===================
 
