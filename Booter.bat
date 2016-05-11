@@ -42,6 +42,7 @@ cls
 echo =======================================
 echo Text OS BIOS !BIOS_version!
 echo Allocated memory to Text OS: !BIOS_ram!
+if defined NUMBER_OF_PROCESSORS echo Amount of processors: !NUMBER_OF_PROCESSORS!
 echo =======================================
 echo.
 echo Press any key to exit to the booter...
