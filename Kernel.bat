@@ -202,8 +202,6 @@ goto menu
 :: ====================Text=OS=Command=Prompt====================
 
 :precmd
-:: cd Users
-:: cd !username!
 cls
 echo ====Text=OS=Command=Prompt====
 echo.
@@ -333,7 +331,6 @@ if not exist colorcode.dat (
 
 
 :MountVirtualDisk
-:: cd !TextOS.DataFolder!
 cd VirtualDrives
 set /p TextOS.LatestVirtualDriveInput=Enter letter (ONLY THE LETTER): 
 set TextOS.MountedDrive=!TextOS.LatestVirtualDriveInput!
