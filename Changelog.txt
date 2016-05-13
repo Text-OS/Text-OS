@@ -2,6 +2,7 @@ v0.1.064
 - Settings (very bare as of now)
 - Add color code saving & loading
 - Update Guess The Number to 1.01
+- Add way to rename your username & userfolders!
 
 v0.1.062
 - Refined Error system
