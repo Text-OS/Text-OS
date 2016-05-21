@@ -30,14 +30,14 @@ else (
 
 
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
-set TextOS.Version=0.1.062
+set TextOS.Version=0.1.064
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
 set TextOS.BootedFromTextOS=1
 set TextOS.RandomNumber=%random%
 if not defined TextOS.DevMode set TextOS.DevMode=0
 set TextOS.UseBooterMsg=Make sure you boot from the booter.
 set TextOS.MM=Error loading TextOS.BootedFromTextOS. Having this not set may crash Text-OS programs.
-set TextOS.SkipLoad=true
+set TextOS.SkipLoad=false
 set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
 set TextOS.HomeFolder=%cd%\data\homefolder
