@@ -40,7 +40,7 @@ set TextOS.MM=Error loading TextOS.BootedFromTextOS. Having this not set may cra
 set TextOS.SkipLoad=false
 set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
-set TextOS.HomeFolder=%cd%\data\homefolder
+set TextOS.HomeFolder=%cd%\Users\!username!
 set TextOS.DataFolder=%cd%
 
 
