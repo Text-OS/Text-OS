@@ -1,6 +1,8 @@
 ;This is the installer for Text-OS, made with NSIS (MUI).
 ;The example script that this is based on this is written by Joost Verburg
 
+; NOTE: WE ARE USING 2.46 DUE TO LEGACY REASONS. ALL PRODUCTION VERSIONS SHOULD USE 2.46.
+
 ;--------------------------------
 ;Define
 
@@ -95,6 +97,7 @@ Section "Core" SecCore
   CreateDirectory "$INSTDIR\Data\Programs"
   CreateDirectory "$INSTDIR\Data\VirtualDrives"
   File "Data\cmdmenusel.exe"
+  File "Data\wincheck.bat"
   
   ;Games folder
   SetOutPath "$INSTDIR\Data\Games"
@@ -102,6 +105,7 @@ Section "Core" SecCore
   SetOutPath "$INSTDIR\Data\Games\GuessTheNumber"
   File "Data\Games\GuessTheNumber\GuessTheNumber.bat"
   File "Data\Games\GuessTheNumber\cmdmenusel.exe"
+  File "Data\Games\GuessTheNumber\changelog.txt"
   
   ;Programs folder
   SetOutPath "$INSTDIR\Data\Programs"
@@ -120,6 +124,7 @@ Section "Core" SecCore
   SetOutPath "$INSTDIR\Data\Programs\Zombocom_Text_Edition"
   File "Data\Programs\Zombocom_Text_Edition\Start.bat"
   File "Data\Programs\Zombocom_Text_Edition\zombo.mp3"
+  File "Data\Programs\Zombocom_Test_Edition\changelog.txt"
   
   ;VirtualDrives folder
   SetOutPath "$INSTDIR\Data\VirtualDrives"

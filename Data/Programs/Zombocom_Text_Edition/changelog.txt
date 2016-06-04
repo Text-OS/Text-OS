@@ -1,0 +1,6 @@
+v1.01
+- Improvements to timeout
+- Removing unused code
+
+v1.0
+- Initial Release

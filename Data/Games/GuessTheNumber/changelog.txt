@@ -1,0 +1,9 @@
+v1.01
+- Fix text
+- Remove unused code
+
+v1.0
+- Made stable
+
+v0.8
+- Initial Release

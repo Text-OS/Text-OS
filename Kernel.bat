@@ -43,6 +43,7 @@ set TextOS.DoEchoOn=false
 set TextOS.HomeFolder=%cd%\Users\!username!
 set TextOS.DataFolder=%cd%
 
+call wincheck.bat && :: Makes the TextOS.WindowsVersion variable
 
 if defined TextOS_SDK.FinalDebug goto FinalDebug
 
@@ -245,9 +246,10 @@ echo vdisk - Virtual Disk.
 goto cmd
 
 :ver
-echo.
 echo Text OS version: !TextOS.Version!
 echo BIOS version: !BIOS_version!
+echo.
+echo Windows version: !TextOS.WindowsVersion!
 goto cmd
 
 :echo
@@ -259,15 +261,14 @@ echo.
 echo !ECHO_INPUT!
 goto cmd
 
-:: This might be changed/deleted in the future
-:loadprogram
-echo.
-echo You are in LoadProgram mode.
-set/p TextOS.LoadProgramInput=Enter filename (put it in the "Data" folder, and exluding file extension):
-echo.
-if not exist !TextOS.LoadProgramInput!.bat echo Could not find the file. && !Timeout! 4 >nul && goto loadprogram
-call !TextOS.LoadProgramInput!
-goto menu
+REM :loadprogram
+REM echo.
+REM echo You are in LoadProgram mode.
+REM set/p TextOS.LoadProgramInput=Enter filename (put it in the "Data" folder, and exluding file extension):
+REM echo.
+REM if not exist !TextOS.LoadProgramInput!.bat echo Could not find the file. && !Timeout! 4 >nul && goto loadprogram
+REM call !TextOS.LoadProgramInput!
+REM goto menu
 
 :: Copied from Command Prompt Wrapper.
 :color
@@ -349,6 +350,8 @@ if !TextOS.VDiskModeInput! == dir dir
 if !TextOS.VDiskModeInput! == read goto VDisk_Read
 if !TextOS.VDiskModeInput! == del goto VDisk_Del
 if !TextOS.VDiskModeInput! == help goto VDisk_Help
+if !TextOS.VDiskModeInput! == mkdir goto VDisk_Mkdir
+
 
 if !TextOS.VDiskModeInput! == wiki set wiki_url=https://github.com/Text-OS/Text-OS/wiki/VDisk-Mode && call :wiki
 
@@ -387,6 +390,13 @@ echo Please note that folder support is not fully implemented, but some buggy fo
 echo.
 goto VDiskMode
 
+:VDisk_Mkdir
+set/p TextOS.VDisk_ReadInput=Enter name of directory: 
+
+mkdir !TextOS.VDisk_ReadInput!
+echo.
+goto VDiskMode
+
 
 :VDisk_404
 echo Could not find file. Please try again.
@@ -419,7 +429,7 @@ set/p TextOS.CU_changeto=Enter username to change to:
 if exist !TextOS.realusername!.redirect del !TextOS.realusername!.redirect
 echo !TextOS.CU_changeto!>> !TextOS.realusername!.redirect
 ren !username! !TextOS.CU_changeto!
-cd..
+cd !TextOS.DataFolder!
 goto Settings_Main
 
 

@@ -1,10 +1,10 @@
 :: Made by RasmusOlle for Text-OS
+:: Version 1.01
 @echo off
 title ZOMBO COM
 setlocal enabledelayedexpansion
 
-set timeout=ping localhost -n
-set zombocom.timeoutspeed=0
+if not defined timeout set timeout=ping localhost -n
 
 start zombo.mp3 
 
