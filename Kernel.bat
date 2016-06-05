@@ -43,7 +43,6 @@ set TextOS.DoEchoOn=false
 set TextOS.HomeFolder=%cd%\Users\!username!
 set TextOS.DataFolder=%cd%
 
-call wincheck.bat && :: Makes the TextOS.WindowsVersion variable
 
 if defined TextOS_SDK.FinalDebug goto FinalDebug
 

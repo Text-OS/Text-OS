@@ -10,8 +10,10 @@ echo Text OS booter loading...
 ping localhost -n 2 >nul
 cd Data
 
+call wincheck.bat && :: Makes the TextOS.WindowsVersion variable
 
 if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
+if not defined TextOS.WindowsVersion goto 9x && :: If it isn't defined, then we're running 9x
 
 ::Setting up custom commands
 set Selection=cmdmenusel f870
@@ -56,6 +58,13 @@ echo Can you please go to http://bit.ly/22ibrQS, download it
 echo and put it in %cd%?
 echo.
 echo When you have done it, restart it.
+pause >nul
+exit
+
+:9x
+cls
+echo Your version of windows is not supported.
+echo Text-OS only supports Windows NT systems.
 pause >nul
 exit
 
