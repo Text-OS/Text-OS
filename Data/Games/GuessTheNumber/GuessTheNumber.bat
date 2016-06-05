@@ -1,5 +1,5 @@
 ::=======================::
-:: Guess The Number 1.01 ::
+:: Guess The Number 1.02 ::
 ::    By RasmusOlle      ::
 ::=======================::
 @echo off
@@ -7,17 +7,19 @@ title Guess The Number
 setlocal enabledelayedexpansion
 
 if not defined TextOS.BootedFromTextOS exit
+set GTN.Version=1.02
 
-set GTN.Version=1.01
+title Guess The Number !GTN.Version!
 
 :menu
 cls
 echo Guess The Number^^!
 echo.
-!Selection! "Start" "Exit to TextOS"
+!Selection! "Start" "Changelog" "Exit to TextOS"
 
 if %errorlevel% == 1 goto Intro
-if %errorlevel% == 2 exit /b
+if %errorlevel% == 2 goto Changelog
+if %errorlevel% == 3 exit /b
 goto menu
 
 :Intro
@@ -43,12 +45,10 @@ echo And the number was !GTN.Number!.
 pause >nul
 goto menu
 
-:: Things I wrote when we talked about defenitions on cameras.
-:: 2160p == 4K
-:: 1440p == HD
-:: 1080p == HD
-:: 720p  == HD
-:: 480p  == SD
-:: 360p  == SD
-:: 240p  == SD
-:: 144p  == LD
+:Changelog
+cls
+type changelog.txt
+echo.
+echo Press any key to go back.
+pause >nul
+goto menu
