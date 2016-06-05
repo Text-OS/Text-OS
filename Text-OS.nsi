@@ -72,10 +72,17 @@ FunctionEnd
 ;--------------------------------
 ;Languages
  
-  !insertmacro MUI_LANGUAGE "English" 
+  !insertmacro MUI_LANGUAGE "English"
 
 ;--------------------------------
 ;Installer Sections
+
+Section ""
+
+  DetailPrint "Installing ${PRODUCT_NAME} ${PRODUCT_VERSION}" 
+  
+  
+SectionEnd
 
 Section "Core" SecCore
 
@@ -124,7 +131,7 @@ Section "Core" SecCore
   SetOutPath "$INSTDIR\Data\Programs\Zombocom_Text_Edition"
   File "Data\Programs\Zombocom_Text_Edition\Start.bat"
   File "Data\Programs\Zombocom_Text_Edition\zombo.mp3"
-  File "Data\Programs\Zombocom_Test_Edition\changelog.txt"
+  File "Data\Programs\Zombocom_Text_Edition\changelog.txt"
   
   ;VirtualDrives folder
   SetOutPath "$INSTDIR\Data\VirtualDrives"
@@ -149,7 +156,7 @@ Section "Core" SecCore
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TEXT-OS\" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TEXT-OS\" "Publisher" "RasmusOlle"
   WriteUninstaller "$INSTDIR\Uninstall.exe"
-
+  
 SectionEnd
 
 Section "Desktop Shortcut" SecDS  ; Nothing to do with Nintendo DS!
@@ -172,7 +179,6 @@ SectionEnd
   LangString DESC_SecCore ${LANG_ENGLISH} "Core files (Required)"
   LangString DESC_SecDS ${LANG_ENGLISH} "Desktop Shortcut"
   LangString DESC_SecXtra ${LANG_ENGLISH} "Extra stuff"
-  
   
   ;Assign language strings to sections
   !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
