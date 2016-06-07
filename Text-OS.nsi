@@ -196,6 +196,7 @@ Section "Uninstall"
   Delete "$INSTDIR\Booter.bat"
   Delete "$INSTDIR\Kernel.bat"
   Delete "$INSTDIR\Changelog.txt"
+  Delete "$INSTDIR\LICENSE.txt"
   Delete "$INSTDIR\Uninstall.exe"
   
   Delete "$DESKTOP\Start Text-OS.lnk"
