@@ -108,7 +108,6 @@ Section "Core" SecCore
   
   ;Games folder
   SetOutPath "$INSTDIR\Data\Games"
-  
   SetOutPath "$INSTDIR\Data\Games\GuessTheNumber"
   File "Data\Games\GuessTheNumber\GuessTheNumber.bat"
   File "Data\Games\GuessTheNumber\cmdmenusel.exe"
