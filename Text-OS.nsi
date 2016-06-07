@@ -97,6 +97,7 @@ Section "Core" SecCore
   File Booter.bat
   File Kernel.bat
   File Changelog.txt
+  File LICENSE.txt
   
   SetOutPath "$INSTDIR\Data"
   CreateDirectory "$INSTDIR\Data\Downloads"
