@@ -7,7 +7,7 @@
 ;Define
 
   !define PRODUCT_NAME "Text-OS"
-  !define PRODUCT_VERSION "0.1.064"
+  !define PRODUCT_VERSION "0.1.066"
   !define PRODUCT_WEB_SITE "http://text-os.github.io"
   !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
