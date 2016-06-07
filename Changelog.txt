@@ -1,3 +1,13 @@
+v0.1.066
+- Mkdir in VDisk
+- Documented changelog for Guess The Number and zombocom
+- Installer stuff
+- !TextOS.WindowsVersion! Variable!
+- Removing cmdemu.bat
+- Installer stuff
+- Zombocom v1.01
+- GuessTheNumber v1.02
+
 v0.1.064
 - Settings (very bare as of now)
 - Add color code saving & loading
