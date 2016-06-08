@@ -11,8 +11,7 @@ if not exist Users (
  mkdir Shared
  mkdir !username!
  cd !username! && echo This is an example file>> Example.txt && cd..
-)
-else (
+) else (
  cd Users
  if not exist !username! (
   if exist !username!.redirect (
@@ -45,6 +44,13 @@ set TextOS.DataFolder=%cd%
 
 
 if defined TextOS_SDK.FinalDebug goto FinalDebug
+
+:: Version
+cscript /nologo download.js http://text-os.github.io/fetch/version
+< out.txt (
+ set/p fetchedver=
+)
+if !fetchedver! NEQ !TextOS.Version! set TextOS.Message=A new update is out. (!fetchedver!)
 
 
 :: Errors
@@ -94,6 +100,10 @@ echo Loading...
 :menu
 :: the variable !username! uses your account name, for example, for me the variable is Rasmusolle because my windows acc name is Rasmusolle.
 cls
+if defined TextOS.Message (
+ echo !TextOS.Message!
+ echo.
+)
 echo ===============TEXT=OS=MENU==============
 echo.
 echo Hello !username!. Welcome to the Text-OS menu.

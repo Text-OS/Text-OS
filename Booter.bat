@@ -10,6 +10,8 @@ echo Text OS booter loading...
 ping localhost -n 2 >nul
 cd Data
 
+del out.txt
+
 call wincheck.bat && :: Makes the TextOS.WindowsVersion variable
 
 if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
