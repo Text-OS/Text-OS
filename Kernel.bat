@@ -361,7 +361,6 @@ if !TextOS.VDiskModeInput! == del goto VDisk_Del
 if !TextOS.VDiskModeInput! == help goto VDisk_Help
 if !TextOS.VDiskModeInput! == mkdir goto VDisk_Mkdir
 
-
 if !TextOS.VDiskModeInput! == wiki set wiki_url=https://github.com/Text-OS/Text-OS/wiki/VDisk-Mode && call :wiki
 
 if exist !TextOS.VDiskModeInput! "!TextOS.VDiskModeInput!"
