@@ -14,6 +14,23 @@ del out.txt
 
 call wincheck.bat && :: Makes the TextOS.WindowsVersion variable
 
+if !TextOS.WindowsVersion! == 5.5 (
+ echo Running Text-OS on Neptune is not supported.
+ echo You are at your own risk.
+ echo.
+ echo Press any key to continue (buggy)
+ pause >nul
+)
+
+if !TextOS.WindowsVersion! == 5.0 (
+ echo Windows 2000 is pretty old.
+ echo Text-OS may work, but is not tested.
+ echo.
+ echo Press any key to continue (buggy)
+ pause >nul
+)
+
+
 if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
 if not defined TextOS.WindowsVersion goto 9x && :: If it isn't defined, then we're running 9x
 

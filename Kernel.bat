@@ -10,7 +10,7 @@ if not exist Users (
  cd Users
  mkdir Shared
  mkdir !username!
- cd !username! && echo This is an example file>> Example.txt && cd..
+ cd !username! && echo This is an example file >> Example.txt && cd..
 ) else (
  cd Users
  if not exist !username! (

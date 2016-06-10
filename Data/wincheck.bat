@@ -9,6 +9,7 @@ if %version% == 6.3 set TextOS.WindowsVersion=Windows 8.1 && echo Windows 8.1
 if %version% == 6.2 set TextOS.WindowsVersion=Windows 8 && echo Windows 8
 if %version% == 6.1 set TextOS.WindowsVersion=Windows 7 && echo Windows 7
 if %version% == 6.0 set TextOS.WindowsVersion=Windows Vista && echo Windows Vista
+if %version% == 5.5 set TextOS.WindowsVersion=Windows Neptune && echo Windows Neptune
 if %version% == 5.2 set TextOS.WindowsVersion=Windows Server 2003 && echo Windows Server 2003
 if %version% == 5.1 set TextOS.WindowsVersion=Windows XP && echo Windows XP
 if %version% == 5.0 set TextOS.WindowsVersion=Windows 2000 && echo Windows 2000
