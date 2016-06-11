@@ -9,6 +9,9 @@ USEFIREFOX.txt
 ## NSIS
 Setup.exe
 
+## User things
+*.redirect
+
 ## Misc.
 colorcode.dat
 out.txt
@@ -45,3 +48,4 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
