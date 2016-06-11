@@ -10,24 +10,22 @@ echo Text OS booter loading...
 ping localhost -n 2 >nul
 cd Data
 
-del out.txt
+if exist out.txt del out.txt
 
-call wincheck.bat && :: Makes the TextOS.WindowsVersion variable
+call wincheck.bat
 
 if !TextOS.WindowsVersion! == 5.5 (
  echo Running Text-OS on Neptune is not supported.
  echo You are at your own risk.
  echo.
- echo Press any key to continue (buggy)
- pause >nul
+ paus
 )
 
 if !TextOS.WindowsVersion! == 5.0 (
  echo Windows 2000 is pretty old.
  echo Text-OS may work, but is not tested.
  echo.
- echo Press any key to continue (buggy)
- pause >nul
+ pause
 )
 
 
