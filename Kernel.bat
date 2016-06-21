@@ -257,8 +257,6 @@ goto cmd
 :ver
 echo Text OS version: !TextOS.Version!
 echo BIOS version: !BIOS_version!
-echo.
-echo Windows version: !TextOS.WindowsVersion!
 goto cmd
 
 :echo
