@@ -12,25 +12,7 @@ cd Data
 
 if exist out.txt del out.txt
 
-call wincheck.bat
-
-if !TextOS.WindowsVersion! == 5.5 (
- echo Running Text-OS on Neptune is not supported.
- echo You are at your own risk.
- echo.
- paus
-)
-
-if !TextOS.WindowsVersion! == 5.0 (
- echo Windows 2000 is pretty old.
- echo Text-OS may work, but is not tested.
- echo.
- pause
-)
-
-
 if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
-if not defined TextOS.WindowsVersion goto 9x && :: If it isn't defined, then we're running 9x
 
 ::Setting up custom commands
 set Selection=cmdmenusel f870
@@ -75,13 +57,6 @@ echo Can you please go to http://bit.ly/22ibrQS, download it
 echo and put it in %cd%?
 echo.
 echo When you have done it, restart it.
-pause >nul
-exit
-
-:9x
-cls
-echo Your version of windows is not supported.
-echo Text-OS only supports Windows NT systems.
 pause >nul
 exit
 

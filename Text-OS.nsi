@@ -105,7 +105,6 @@ Section "Core" SecCore
   CreateDirectory "$INSTDIR\Data\Programs"
   CreateDirectory "$INSTDIR\Data\VirtualDrives"
   File "Data\cmdmenusel.exe"
-  File "Data\wincheck.bat"
   File "Data\download.js"
   
   ;Games folder
