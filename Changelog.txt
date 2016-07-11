@@ -1,3 +1,10 @@
+v0.1.067
+- Add download.js
+- Add version checker and notify if outdated
+- Remove !TextOS.WindowsVersion! Variable. It was too buggy.
+- Removed cmdmenusel check after complications with github.
+- Some fixes
+
 v0.1.066
 - Mkdir in VDisk
 - Documented changelog for Guess The Number and zombocom

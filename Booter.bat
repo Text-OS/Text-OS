@@ -50,16 +50,6 @@ echo Press any key to exit to the booter...
 pause >nul
 goto menu
 
-:cmdmenuselNOTFOUND
-if exist Data cd Data
-echo Cmdmenusel.exe is not found^^!
-echo Can you please go to http://bit.ly/22ibrQS, download it 
-echo and put it in %cd%?
-echo.
-echo When you have done it, restart it.
-pause >nul
-exit
-
 :: This one calls the kernel to be executed with the API strings and stuff.
 :Boot
 cls

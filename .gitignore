@@ -1,5 +1,5 @@
 # ==================================
-# Stuff I don't want to show
+# Non-needed files
 # ==================================
 
 ## USE files
@@ -8,6 +8,7 @@ USEFIREFOX.txt
 
 ## NSIS
 Setup.exe
+Text-OS_Setup_*.exe
 
 ## User things
 *.redirect

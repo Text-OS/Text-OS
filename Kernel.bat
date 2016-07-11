@@ -29,7 +29,7 @@ if not exist Users (
 
 
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
-set TextOS.Version=0.1.066
+set TextOS.Version=0.1.067
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
 set TextOS.BootedFromTextOS=1
 set TextOS.RandomNumber=%random%
