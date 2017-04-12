@@ -3,6 +3,9 @@
 title Text OS Booter
 setlocal enabledelayedexpansion
 
+::Sets the working directory to where the script is.
+cd /d %~dp0
+
 if exist devpls.txt set TextOS.DevMode=1
 
 cls
@@ -37,6 +40,10 @@ if %errorlevel% == 1 goto Boot
 if %errorlevel% == 2 goto BIOS
 goto menu
 
+:: I think it's quite stupid not only the 
+:: screen but that it's required. I think 
+:: we'll remove this along with the 
+:: requirements               /Rasmusolle
 :BIOS
 cls
 :: Memory allocated is just there to be fancy :)

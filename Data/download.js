@@ -8,4 +8,4 @@ BinStream = new ActiveXObject("ADODB.Stream");
 BinStream.Type = 1;
 BinStream.Open();
 BinStream.Write(WinHttpReq.ResponseBody);
-BinStream.SaveToFile("out.txt");
+BinStream.SaveToFile(WScript.Arguments(1));

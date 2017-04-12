@@ -41,15 +41,16 @@ set TextOS.Unrandomize=false
 set TextOS.DoEchoOn=false
 set TextOS.HomeFolder=%cd%\Users\!username!
 set TextOS.DataFolder=%cd%
-
+if exist installer set TextOS.Installer=true else set TextOS.Installer=false
 
 if defined TextOS_SDK.FinalDebug goto FinalDebug
 
 :: Version
-cscript /nologo download.js http://text-os.github.io/fetch/version
-< out.txt (
+cscript /nologo download.js http://text-os.github.io/fetch/version latestver
+< latestver (
  set/p fetchedver=
 )
+del latestver
 if !fetchedver! NEQ !TextOS.Version! set TextOS.Message=A new update is out. (!fetchedver!)
 
 
@@ -89,6 +90,24 @@ if defined TextOS.VarNotFound (
                 )
 
 if not defined TextOS.BootedFromTextOS echo !TextOS.MM! && pause >nul && exit
+
+
+:Password
+if exist Users/!username!/pass (
+	< Users/!username!/pass (
+		set /p pass=
+	)
+	echo This account has a password.
+	echo Please enter your password.
+	set /p input_pass=^> 
+	if !pass! NEQ !input_pass! (
+		echo Wrong password.
+		echo.
+		echo Press any key to retry. . .
+		pause >nul
+		goto Password
+	)
+)
 
 title !TextOS.StandardTitle!
 if !TextOS.SkipLoad! == true goto menu
@@ -226,13 +245,13 @@ if !TextOS.CmdPromptInput! == echo goto echo
 if !TextOS.CmdPromptInput! == cls cls
 if !TextOS.CmdPromptInput! == secret goto DevPromptStart
 if !TextOS.CmdPromptInput! == color goto color
-if !TextOS.CmdPromptInput! == helpcolor goto helpcolor
+if !TextOS.CmdPromptInput! == "help color" goto helpcolor
 if !TextOS.CmdPromptInput! == back color 07 && goto menu
 
 if !TextOS.CmdPromptInput! == savecolor goto savecolor
 if !TextOS.CmdPromptInput! == loadcolor goto loadcolor
 
-
+if !TextOS.CmdPromptInput! == example echo This is a sample command.
 if !TextOS.CmdPromptInput! == ping echo pong^^!
 if !TextOS.CmdPromptInput! == wiki set wiki_url=https://github.com/Text-OS/Text-OS/wiki && call :wiki
 
@@ -317,6 +336,7 @@ if not defined colorcode (
  cd.. && cd..
  goto cmd
 ) else (
+ if exist colorcode.dat del colorcode.dat
  echo !colorcode!>> colorcode.dat
  cd.. && cd..
  goto cmd
@@ -340,8 +360,34 @@ if not exist colorcode.dat (
 
 :MountVirtualDisk
 cd VirtualDrives
-set /p TextOS.LatestVirtualDriveInput=Enter letter (ONLY THE LETTER): 
-set TextOS.MountedDrive=!TextOS.LatestVirtualDriveInput!
+echo Enter letter: 
+choice /c:abcdefghijklmnopqrstuvwxyz /n
+if %errorlevel% == 1 set TextOS.MountedDrive=a
+if %errorlevel% == 2 set TextOS.MountedDrive=b
+if %errorlevel% == 3 set TextOS.MountedDrive=c
+if %errorlevel% == 4 set TextOS.MountedDrive=d
+if %errorlevel% == 5 set TextOS.MountedDrive=e
+if %errorlevel% == 6 set TextOS.MountedDrive=f
+if %errorlevel% == 7 set TextOS.MountedDrive=g
+if %errorlevel% == 8 set TextOS.MountedDrive=h
+if %errorlevel% == 9 set TextOS.MountedDrive=i
+if %errorlevel% == 10 set TextOS.MountedDrive=j
+if %errorlevel% == 11 set TextOS.MountedDrive=k
+if %errorlevel% == 12 set TextOS.MountedDrive=l
+if %errorlevel% == 13 set TextOS.MountedDrive=m
+if %errorlevel% == 14 set TextOS.MountedDrive=n
+if %errorlevel% == 15 set TextOS.MountedDrive=o
+if %errorlevel% == 16 set TextOS.MountedDrive=p
+if %errorlevel% == 17 set TextOS.MountedDrive=q
+if %errorlevel% == 18 set TextOS.MountedDrive=r
+if %errorlevel% == 19 set TextOS.MountedDrive=s
+if %errorlevel% == 20 set TextOS.MountedDrive=t
+if %errorlevel% == 21 set TextOS.MountedDrive=u
+if %errorlevel% == 22 set TextOS.MountedDrive=v
+if %errorlevel% == 23 set TextOS.MountedDrive=w
+if %errorlevel% == 24 set TextOS.MountedDrive=x
+if %errorlevel% == 25 set TextOS.MountedDrive=y
+if %errorlevel% == 26 set TextOS.MountedDrive=z
 if not exist !TextOS.MountedDrive! mkdir !TextOS.MountedDrive!
 cd !TextOS.MountedDrive!
 echo Mounted.
@@ -356,9 +402,10 @@ if !TextOS.VDiskModeInput! == back cd.. && cd.. && goto menu
 if !TextOS.VDiskModeInput! == dir dir
 if !TextOS.VDiskModeInput! == read goto VDisk_Read
 if !TextOS.VDiskModeInput! == del goto VDisk_Del
-if !TextOS.VDiskModeInput! == help goto VDisk_Help
 if !TextOS.VDiskModeInput! == mkdir goto VDisk_Mkdir
+if !TextOS.VDiskModeInput! == ren goto VDisk_Ren
 
+if !TextOS.VDiskModeInput! == help goto VDisk_Help
 if !TextOS.VDiskModeInput! == wiki set wiki_url=https://github.com/Text-OS/Text-OS/wiki/VDisk-Mode && call :wiki
 
 if exist !TextOS.VDiskModeInput! "!TextOS.VDiskModeInput!"
@@ -373,26 +420,11 @@ echo.
 goto VDiskMode
 
 :VDisk_Del
-set/p TextOS.VDisk_ReadInput=Enter file to delete (with file extension): 
-if not exist !TextOS.VDisk_ReadInput! call :VDisk_404 && goto VDisk_Del
+set/p TextOS.VDisk_DelInput=Enter file to delete (with file extension): 
+if not exist !TextOS.VDisk_DelInput! call :VDisk_404 && goto VDisk_Del
 
-del !TextOS.VDisk_ReadInput!
-echo Deleted !TextOS.VDisk_ReadInput! successfully!
-echo.
-goto VDiskMode
-
-:VDisk_Help
-echo.
-echo This is a list of all commands:
-echo.
-echo back - goes back to the command prompt
-echo dir - shows dir
-echo read - reads a text file
-echo del - deletes a file
-echo wiki - goes to the VDisk hub on the wiki
-echo help - display this text
-echo.
-echo Please note that folder support is not fully implemented, but some buggy folder deleting stuff in del MAY work.
+del !TextOS.VDisk_DelInput!
+echo Deleted !TextOS.VDisk_DelInput! successfully^^!
 echo.
 goto VDiskMode
 
@@ -403,6 +435,31 @@ mkdir !TextOS.VDisk_ReadInput!
 echo.
 goto VDiskMode
 
+:VDisk_Ren
+set/p TextOS.VDisk_RenInput1=Enter filename of file to rename (with file extension): 
+if not exist !TextOS.VDisk_RenInput1! call :VDisk_404 && goto VDisk_Ren
+
+set/p TextOS.VDisk_RenInput2=Enter new name of file (with file extension): 
+
+ren !TextOS.VDisk_RenInput1! !TextOS.VDisk_RenInput2!
+goto VDiskMode
+
+:VDisk_Help
+echo.
+echo This is a list of all commands:
+echo.
+echo back - goes back to the command prompt
+echo dir - shows dir
+echo read - reads a text file
+echo del - deletes a file/directory
+echo mkdir - makes a directory
+echo ren - renames a file/directory
+echo wiki - goes to the VDisk hub on the wiki
+echo help - display this text
+::echo.
+::echo Please note that folder support is not fully implemented, but some buggy folder deleting stuff in del MAY work.
+echo.
+goto VDiskMode
 
 :VDisk_404
 echo Could not find file. Please try again.
@@ -419,12 +476,13 @@ exit /b
 cls
 echo ===SETTINGS===
 echo.
-!Selection! "Change username (Restart required)" "Wipe saved colorcode" "" "Back"
+!Selection! "Change username (Restart required)" "Wipe saved colorcode" "Passwords..." "" "Back"
 
 if %errorlevel% == 1 goto Change_Username
 if %errorlevel% == 2 goto Wipe_Saved_Colorcode
-if %errorlevel% == 3 goto Settings_Main
-if %errorlevel% == 4 goto menu
+if %errorlevel% == 3 goto Password_Main
+if %errorlevel% == 4 goto Settings_Main
+if %errorlevel% == 5 goto menu
 goto Settings_Main
 
 
@@ -437,6 +495,100 @@ echo !TextOS.CU_changeto!>> !TextOS.realusername!.redirect
 ren !username! !TextOS.CU_changeto!
 cd !TextOS.DataFolder!
 goto Settings_Main
+
+
+:Password_Main
+cls
+echo ===PASSWORD=SETTINGS==
+echo.
+
+if not exist Users/!username!/pass (
+	!Selection! "Create Password" "Remove Password" "Back"
+) else (
+	!Selection! "Change Password" "Remove Password" "Back"
+)
+if %errorlevel% == 1 goto Password_check
+if %errorlevel% == 2 goto Password_Delete
+if %errorlevel% == 3 goto Settings_Main
+
+:Password_check
+if not exist Users/!username!/pass (
+	goto Password_Create
+) else (
+	goto Password_Change
+)
+
+:Password_Create
+cls
+echo Enter the password you want to use.
+echo.
+set /p input=^> 
+echo.
+echo Please type the password again.
+echo.
+set /p input2=^> 
+if !input! == !input2! (
+	cd !TextOS.DataFolder!
+	cd Users/!username!
+	echo !input!>>pass
+) else (
+	echo -------------------------
+	echo Passwords doesn't match.
+	echo.
+	echo Press any key to retry. . .
+	pause >nul
+)
+cd !TextOS.DataFolder!
+goto Password_Main
+
+
+:Password_Change
+cls
+cd !TextOS.DataFolder!
+cd Users/!username!
+< pass (
+	set /p pass=
+)
+echo Enter the current password.
+echo.
+set /p input=^> 
+if !input! == !pass! (
+	del pass
+	echo Enter the new password.
+	echo.
+	set/p input=^> 
+	echo !input!>>pass
+) else (
+	echo That isn't the right password.
+	echo Press any key to go back. . .
+	pause >nul
+)
+cd !TextOS.DataFolder!
+goto Password_Main
+
+:Password_Delete
+cls
+cd !TextOS.DataFolder!
+cd Users/!username!
+< pass (
+	set /p pass=
+)
+echo Enter the current password.
+echo.
+set /p input=^> 
+if !input! == !pass! (
+	del pass
+	echo Your account's password has been removed.
+	echo Press any key to go back. . .
+	pause >nul
+) else (
+	echo That isn't the right password.
+	echo Press any key to go back. . .
+	pause >nul
+)
+cd !TextOS.DataFolder!
+goto Password_Main
+
 
 
 :Wipe_Saved_Colorcode

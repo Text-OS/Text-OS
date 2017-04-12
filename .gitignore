@@ -12,6 +12,7 @@ Text-OS_Setup_*.exe
 
 ## User things
 *.redirect
+Data/Users
 
 ## Misc.
 colorcode.dat

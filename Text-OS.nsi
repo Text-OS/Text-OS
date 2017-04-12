@@ -107,6 +107,10 @@ Section "Core" SecCore
   File "Data\cmdmenusel.exe"
   File "Data\download.js"
   
+  FileOpen $9 installer w 
+  FileWrite $9 "1"
+  FileClose $9
+  
   ;Games folder
   SetOutPath "$INSTDIR\Data\Games"
   SetOutPath "$INSTDIR\Data\Games\GuessTheNumber"
