@@ -46,7 +46,7 @@ if exist installer set TextOS.Installer=true else set TextOS.Installer=false
 if defined TextOS_SDK.FinalDebug goto FinalDebug
 
 :: Version
-cscript /nologo download.js http://text-os.github.io/fetch/version latestver
+!download! http://text-os.github.io/fetch/version latestver
 < latestver (
  set/p fetchedver=
 )
@@ -93,7 +93,6 @@ if not defined TextOS.BootedFromTextOS (
 	echo Error loading TextOS.BootedFromTextOS. Having this not set may crash Text-OS programs.
 	pause >nul
 	exit
-	
 )
 
 
@@ -120,7 +119,7 @@ if !TextOS.SkipLoad! == true goto menu
 :Load
 cls
 echo Loading... 
-!Timeout! 2 >nul
+!Timeout! 2
 
 :menu
 :: the variable !username! uses your account name, for example, for me the variable is Rasmusolle because my windows acc name is Rasmusolle.

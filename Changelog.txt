@@ -7,6 +7,8 @@ v0.1.071
 - Add ren to VDisk
 - Organize help for command prompt and VDisk
 - Add TextOS.KernelFolder API Variable
+- Add !download! function (Usage: !download! [url] [filename])
+- You no longer need to place >nul after !timeout!
 - Remove TextOS.Unrandomize
 - Remove TextOS.DoEchoOn
 - Remove TextOS.MM. The message is now incorporated into the error.

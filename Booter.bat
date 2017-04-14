@@ -19,9 +19,10 @@ if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
 
 ::Setting up custom commands
 set Selection=cmdmenusel f870
-set Timeout=ping localhost -n
+set Timeout=ping localhost -n >nul
 set CLR=color
 set Oneup=cd..
+set download=cscript /nologo %cd%\download.js
 
 ::Setting up BIOS
 set BIOSSETUP=set
@@ -62,6 +63,6 @@ goto menu
 cls
 !Oneup!
 echo Reading Kernel.bat
-!timeout! 3 >nul
+!timeout! 3
 cls
 call Kernel.bat
