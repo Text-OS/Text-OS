@@ -46,7 +46,7 @@ if exist installer set TextOS.Installer=true else set TextOS.Installer=false
 if defined TextOS_SDK.FinalDebug goto FinalDebug
 
 :: Version
-!download! http://text-os.github.io/fetch/version latestver
+!Download! http://text-os.github.io/fetch/version latestver
 < latestver (
  set/p fetchedver=
 )
@@ -55,46 +55,20 @@ if !fetchedver! NEQ !TextOS.Version! set TextOS.Message=A new update is out. (!f
 
 
 :: Errors
-if not defined BIOS_ram (
-	echo Error loading RAM. !TextOS.UseBooterMsg!
-	echo For Booter developers, make sure your booter meets the requirements.
-	pause >nul
-	exit
-)
+if not defined BIOS_ram call error_reporter.bat "Error loading RAM. !TextOS.UseBooterMsg!" "if not defined BIOS_ram"
+if not defined BIOS_version call error_reporter.bat "Error loading BIOS version. !TextOS.UseBooterMsg!" "if not defined BIOS_version"
+if !BIOSSETUP! NEQ exit call error_reporter.bat "^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!" "if !BIOSSETUP! NEQ exit"
 
-if not defined BIOS_version (
-	echo Error loading BIOS version. !TextOS.UseBooterMsg!
-	echo For Booter developers, make sure your booter meets the requirements.
-	pause >nul
-	exit
-)
-
-if !BIOSSETUP! NEQ exit (
-	echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
-	echo For Booter developers, make sure your booter meets the requirements.
-	pause >nul
-	exit
-)
+if not defined TextOS.BootedFromTextOS call error_reporter.bat "Error loading TextOS.BootedFromTextOS." "if not defined TextOS.BootedFromTextOS"
 
 if not defined Selection set TextOS.VarNotFound=^^!Selection^^! && goto Varcheck
+if not defined Download set TextOS.VarNotFound=^^!Downloadt^^! && goto Varcheck
 if not defined Timeout set TextOS.VarNotFound=^^!Timeout^^! && goto Varcheck
 if not defined Oneup set TextOS.VarNotFound=^^!Oneup^^! && goto Varcheck
 if not defined CLR set TextOS.VarNotFound=^^!CLR^^! && goto Varcheck
 
 :Varcheck
-if defined TextOS.VarNotFound (
-                echo The variable !TextOS.VarNotFound! is not defined. !UseBooterMsg!
-                echo For Booter developers, make sure your booter meets the requirements.
-                pause >nul
-                exit
-                )
-
-if not defined TextOS.BootedFromTextOS (
-	echo Error loading TextOS.BootedFromTextOS. Having this not set may crash Text-OS programs.
-	pause >nul
-	exit
-)
-
+if defined TextOS.VarNotFound call error_reporter.bat "The variable !TextOS.VarNotFound! is not defined. !UseBooterMsg!" "if !BIOSSETUP! NEQ exit"
 
 
 :Password

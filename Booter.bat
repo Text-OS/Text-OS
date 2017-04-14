@@ -19,10 +19,10 @@ if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
 
 ::Setting up custom commands
 set Selection=cmdmenusel f870
+set Download=cscript /nologo %cd%\download.js
 set Timeout=ping localhost -n >nul
-set CLR=color
 set Oneup=cd..
-set download=cscript /nologo %cd%\download.js
+set CLR=color
 
 ::Setting up BIOS
 set BIOSSETUP=set
