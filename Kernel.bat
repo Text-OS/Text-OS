@@ -35,10 +35,7 @@ set TextOS.BootedFromTextOS=1
 set TextOS.RandomNumber=%random%
 if not defined TextOS.DevMode set TextOS.DevMode=0
 set TextOS.UseBooterMsg=Make sure you boot from the booter.
-set TextOS.MM=Error loading TextOS.BootedFromTextOS. Having this not set may crash Text-OS programs.
 set TextOS.SkipLoad=false
-set TextOS.Unrandomize=false
-set TextOS.DoEchoOn=false
 cd..
 set TextOS.KernelFolder=%cd%
 cd data
@@ -59,25 +56,25 @@ if !fetchedver! NEQ !TextOS.Version! set TextOS.Message=A new update is out. (!f
 
 :: Errors
 if not defined BIOS_ram (
-                echo Error loading RAM. !TextOS.UseBooterMsg!
-                echo For Booter developers, make sure your booter meets the requirements.
-                pause >nul
-                exit
-                )
+	echo Error loading RAM. !TextOS.UseBooterMsg!
+	echo For Booter developers, make sure your booter meets the requirements.
+	pause >nul
+	exit
+)
 
 if not defined BIOS_version (
-                echo Error loading BIOS version. !TextOS.UseBooterMsg!
-                echo For Booter developers, make sure your booter meets the requirements.
-                pause >nul
-                exit
-                )
+	echo Error loading BIOS version. !TextOS.UseBooterMsg!
+	echo For Booter developers, make sure your booter meets the requirements.
+	pause >nul
+	exit
+)
 
 if !BIOSSETUP! NEQ exit (
-                echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
-                echo For Booter developers, make sure your booter meets the requirements.
-                pause >nul
-                exit
-                )
+	echo ^^!BIOSSETUP^^! is corrupted. !TextOS.UseBooterMsg!
+	echo For Booter developers, make sure your booter meets the requirements.
+	pause >nul
+	exit
+)
 
 if not defined Selection set TextOS.VarNotFound=^^!Selection^^! && goto Varcheck
 if not defined Timeout set TextOS.VarNotFound=^^!Timeout^^! && goto Varcheck
@@ -92,7 +89,13 @@ if defined TextOS.VarNotFound (
                 exit
                 )
 
-if not defined TextOS.BootedFromTextOS echo !TextOS.MM! && pause >nul && exit
+if not defined TextOS.BootedFromTextOS (
+	echo Error loading TextOS.BootedFromTextOS. Having this not set may crash Text-OS programs.
+	pause >nul
+	exit
+	
+)
+
 
 
 :Password

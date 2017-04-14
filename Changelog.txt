@@ -1,3 +1,16 @@
+v0.1.071
+- Download.js 2.0
+- Add password system
+- Choice for mounting a vdisk
+- Booter sets working directory to script location
+- Modularize Commands and VDisk
+- Add ren to VDisk
+- Organize help for command prompt and VDisk
+- Add TextOS.KernelFolder API Variable
+- Remove TextOS.Unrandomize
+- Remove TextOS.DoEchoOn
+- Remove TextOS.MM. The message is now incorporated into the error.
+
 v0.1.067
 - Add download.js
 - Add version checker and notify if outdated
