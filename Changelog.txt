@@ -10,7 +10,7 @@ v0.1.071
 - Added !download! function (Usage: !download! [url] [filename])
 - You no longer need to place >nul after !timeout!
 - Rewritten the error system
-- Added 
+- Added updating system
 - Removed TextOS.Unrandomize
 - Removed TextOS.DoEchoOn
 - Removed TextOS.MM. The message is now incorporated into the error.
