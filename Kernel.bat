@@ -26,10 +26,10 @@ if not exist Users (
  if not exist Shared mkdir Shared
  cd..
 )
-
+if exist tmp del /q tmp
 
 :: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
-set TextOS.Version=0.1.067
+set TextOS.Version=0.1.066
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
 set TextOS.BootedFromTextOS=1
 set TextOS.RandomNumber=%random%
@@ -100,6 +100,7 @@ echo Loading...
 cls
 if defined TextOS.Message (
  echo !TextOS.Message!
+ echo To update, type in "update" in the command prompt.
  echo.
 )
 echo ===============TEXT=OS=MENU==============
