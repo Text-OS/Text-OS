@@ -234,7 +234,7 @@ goto cmd
 cls
 echo ===SETTINGS===
 echo.
-!Selection! "Change username (Restart required)" "Wipe saved colorcode" "Passwords..." "" "Back"
+!Selection! "Change username (Restart required)" "Wipe saved colorcode" "Password" "" "Back"
 
 if %errorlevel% == 1 goto Change_Username
 if %errorlevel% == 2 goto Wipe_Saved_Colorcode
