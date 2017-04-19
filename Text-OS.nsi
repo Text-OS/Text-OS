@@ -100,16 +100,25 @@ Section "Core" SecCore
   File LICENSE.txt
   
   SetOutPath "$INSTDIR\Data"
+  CreateDirectory "$INSTDIR\Data\Commands"
   CreateDirectory "$INSTDIR\Data\Downloads"
   CreateDirectory "$INSTDIR\Data\Games"
   CreateDirectory "$INSTDIR\Data\Programs"
   CreateDirectory "$INSTDIR\Data\VirtualDrives"
   File "Data\cmdmenusel.exe"
   File "Data\download.js"
+  File "Data\error_reporter.bat"
+  File "Data\wiki.bat"
   
   FileOpen $9 installer w 
   FileWrite $9 "1"
   FileClose $9
+  
+  ;Commands folder
+  SetOutPath "$INSTDIR\Data\Commands\"
+  File "Data\Commands\"
+  SetOutPath "$INSTDIR\Data\Commands\VDisk\"
+  File "Data\Commands\VDisk\"
   
   ;Games folder
   SetOutPath "$INSTDIR\Data\Games"
