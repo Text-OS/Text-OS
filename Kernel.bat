@@ -269,6 +269,7 @@ if %errorlevel% == 1 goto Password_check
 if %errorlevel% == 2 goto Password_Delete
 if %errorlevel% == 3 goto Settings_Main
 
+
 :Password_check
 if not exist Users/!username!/pass (
 	goto Password_Create
@@ -298,7 +299,6 @@ if !input! == !input2! (
 )
 cd !TextOS.DataFolder!
 goto Password_Main
-
 
 :Password_Change
 cls
@@ -346,7 +346,6 @@ if !input! == !pass! (
 )
 cd !TextOS.DataFolder!
 goto Password_Main
-
 
 
 :Wipe_Saved_Colorcode
