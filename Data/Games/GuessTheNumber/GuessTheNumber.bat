@@ -6,6 +6,8 @@
 title Guess The Number
 setlocal enabledelayedexpansion
 
+cd.. && cd..
+
 if not defined TextOS.BootedFromTextOS exit
 set GTN.Version=1.02
 
