@@ -10,7 +10,6 @@ cls
 (echo AREA: %2 VARIABLES:)>> error.txt
 (set TextOS.)>> error.txt
 (echo ---------------------------------------------------------------------------)>> error.txt
-(echo.)>> error.txt
 notepad.exe error.txt
 
 exit
