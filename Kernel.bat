@@ -108,97 +108,54 @@ echo.
 echo Hello !username!. Welcome to the Text-OS menu.
 echo You are running Text-OS !TextOS.Version!
 echo.
-!Selection! "Command Prompt" "Programs" "Games" "Settings" "Exit"
+!Selection! "Command Prompt" "Apps" "Settings" "Exit"
 
 if %errorlevel% == 1 goto precmd
-if %errorlevel% == 2 goto Programs
-if %errorlevel% == 3 goto Games
-if %errorlevel% == 4 goto Settings_Main
-if %errorlevel% == 5 exit
+if %errorlevel% == 2 goto Apps
+if %errorlevel% == 3 goto Settings_Main
+if %errorlevel% == 4 exit
 goto menu
 
-:: ====================Programs====================
+:: ====================Apps====================
 
-:Programs
+:Apps
 cls
-echo ===============PROGRAMS==============
+set folderset=set TextOS.AppFolder
+set fileset=set TextOS.FileToExecute
+set go=goto Start
+echo ===============APPS==============
 echo.
-!Selection! "Calculator" "Text-OS Browser" "Zombo.com Text Edition" "Back To Menu"
+!Selection! "Text-OS Browser" "Calculator" "Guess The Number" "Zombo.com Text Edition" "Back To Menu"
 
-if %errorlevel% == 1 goto Calc
-if %errorlevel% == 2 goto Browser
-if %errorlevel% == 3 goto ZomboCom
-if %errorlevel% == 4 goto menu
+if %errorlevel% == 1 !folderset!=Browser && !fileset!=Browser_Start.bat && !go!
+if %errorlevel% == 2 !folderset!=Calculator && !fileset!=Calculator.bat && !go!
+if %errorlevel% == 3 !folderset!=GuessTheNumber && !fileset!=GuessTheNumber.bat && !go!
+if %errorlevel% == 4 !folderset!=Zombocom_Text_Edition && !fileset!=Start.bat && !go!
+if %errorlevel% == 5 goto menu
 call :WrongErrorlevel
 goto Programs
 
-:Calc
+:Start
 cls
-cd Programs
-cd Calculator
-set TextOS.FileToExecute=Calculator.bat
+cd Apps
+cd !TextOS.AppFolder!
 if not exist !TextOS.FileToExecute! goto NotFound
 call !TextOS.FileToExecute!
 title !TextOS.Standardtitle!
 cd.. && cd..
 goto menu
 
-:Browser
-cls
-cd Programs
-cd Browser
-set TextOS.FileToExecute=Browser_Start.bat
-if not exist !TextOS.FileToExecute! goto NotFound
-call !TextOS.FileToExecute!
-title !TextOS.Standardtitle!
-cd.. && cd..
-goto menu
+:: ====================Apps=End===================
 
-:ZomboCom
-cls
-cd Programs
-cd Zombocom_Text_Edition
-set TextOS.FileToExecute=Start.bat
-if not exist !TextOS.FileToExecute! goto NotFound
-call !TextOS.FileToExecute!
-title !TextOS.Standardtitle!
-cd.. && cd..
-goto menu
-
-:: ====================Programs=End===================
-
-
-:: ====================Games===================
-
-:Games
-cls
-echo ===============GAMES===============
-echo.
-!Selection! "Guess The Number" "Back To Menu"
-
-if %errorlevel% == 1 goto GuessTheNumber
-if %errorlevel% == 2 goto menu
-call :WrongErrorlevel
-goto Games
-
-:GuessTheNumber
-cls
-cd Games
-cd GuessTheNumber
-set TextOS.FileToExecute=GuessTheNumber.bat
-if not exist !TextOS.FileToExecute! goto NotFound
-call !TextOS.FileToExecute!
-title !TextOS.StandardTitle!
-cd.. && cd..
-goto menu
-
-:: ====================Games End====================
-
-:: Generic errors for games and programs
+:: Generic errors for apps
 
 :NotFound
 cls
 echo File not found.
+echo.
+echo Debug info:
+echo !TextOS.AppFolder!
+echo !TextOS.FileToExecute!
 pause >nul
 goto menu
 
