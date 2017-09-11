@@ -1,9 +1,9 @@
-::Booter for Text OS, used to read the kernel.bat and other files.
+:: Booter for Text OS, used to read the kernel.bat and other files.
 @echo off
 title Text OS Booter
 setlocal enabledelayedexpansion
 
-::Sets the working directory to where the script is.
+:: Sets the working directory to where the script is.
 cd /d %~dp0
 
 if exist devpls.txt set TextOS.DevMode=1
@@ -17,14 +17,14 @@ if exist out.txt del out.txt
 
 if not exist cmdmenusel.exe goto cmdmenuselNOTFOUND
 
-::Setting up custom commands
+:: Setting up custom commands
 set Selection=cmdmenusel f870
 set Download=cscript /nologo %cd%\download.js
 set Timeout=ping localhost -n >nul
 set Oneup=cd..
 set CLR=color
 
-::Setting up BIOS
+:: Setting up BIOS
 set BIOSSETUP=set
 !BIOSSETUP! BIOS_version=0.1.015
 !BIOSSETUP! BIOS_ram=5M

@@ -28,7 +28,7 @@ if not exist Users (
 )
 if exist tmp del /q tmp
 
-:: Want to see all the TextOS-Specefic commands? do "set TextOS" in the devprompt
+:: Want to see all the TextOS-Specific commands? do "set TextOS" in the devprompt
 set TextOS.Version=0.1.067
 set TextOS.StandardTitle=Text OS ^| Version: !TextOS.Version!
 set TextOS.BootedFromTextOS=1
@@ -96,7 +96,7 @@ echo Loading...
 !Timeout! 2
 
 :menu
-:: the variable !username! uses your account name, for example, for me the variable is Rasmusolle because my windows acc name is Rasmusolle.
+:: The variable !username! uses your Windows account name.
 cls
 if defined TextOS.Message (
  echo !TextOS.Message!
