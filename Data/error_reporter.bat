@@ -1,5 +1,7 @@
-if "%~1" == "" exit
-if "%~2" == "" exit
+@echo off
+
+if "%~1" == "" goto errorerror
+if "%~2" == "" goto errorerror
 
 cls
 (echo %date% %time%)>> error.txt
@@ -11,5 +13,14 @@ cls
 (set TextOS.)>> error.txt
 (echo ---------------------------------------------------------------------------)>> error.txt
 notepad.exe error.txt
+goto exit
 
+:errorerror
+echo I'm real serious. Not even Needle doesn't believe me. You better do. There was 
+echo an error with the error reporter. Coiny and Pin thinks it's an inception joke. 
+echo But it isn't. Please. Report this bug!
+echo Report this at http://github.com/Text-OS/Text-OS. I am counting on you.
+pause
+
+:exit
 exit
